@@ -1,0 +1,47 @@
+<animation-list xmlns:android="http://schemas.android.com/apk/res/android"
+    android:oneshot="true">
+    <item android:drawable="@drawable/dice_roll_1" android:duration="100" />
+    <item android:layout_width="62dp"
+        android:layout_height="62dp"
+        android:drawable="@drawable/dice_roll_5" android:duration="100"/>
+    <item android:width="64dp"
+        android:height="64dp"
+        android:drawable="@drawable/dice_roll_3" android:duration="100"/>
+    <item android:drawable="@drawable/dice_roll_4" android:duration="100" android:width="70dp" android:height="70dp"/>
+    <item android:width="68dp"
+        android:height="68dp"
+        android:drawable="@drawable/dice_roll_2" android:duration="100"/>
+    <item android:width="68dp"
+        android:height="68dp"
+        android:drawable="@drawable/dice_roll_6" android:duration="100"/>
+    <item android:layout_width="70dp"
+        android:layout_height="70dp"
+        android:drawable="@drawable/dice_roll_7" android:duration="100"/>
+    <item android:width="71dp"
+        android:height="71dp"
+        android:drawable="@drawable/dice_roll_8" android:duration="100"/>
+    <item android:width="72dp"
+        android:height="72dp"
+        android:drawable="@drawable/dice_roll_6" android:duration="100"/>
+    <item android:width="71dp"
+        android:height="71dp"
+        android:drawable="@drawable/dice_roll_4" android:duration="100"/>
+    <item android:width="70dp"
+        android:height="70dp"
+        android:drawable="@drawable/dice_roll_2" android:duration="100"/>
+    <item android:width="68dp"
+        android:height="68dp"
+        android:drawable="@drawable/dice_roll_8" android:duration="100"/>
+    <item android:width="66dp"
+        android:height="66dp"
+        android:drawable="@drawable/dice_roll_1" android:duration="100"/>
+    <item android:width="64dp"
+        android:height="64dp"
+        android:drawable="@drawable/dice_roll_7" android:duration="100"/>
+    <item android:width="62dp"
+        android:height="62dp"
+        android:drawable="@drawable/dice_roll_5" android:duration="100"/>
+    <item android:width="60dp"
+        android:height="60dp"
+        android:drawable="@drawable/dice_result_6" android:duration="100"/>
+</animation-list>
