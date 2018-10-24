@@ -1,23 +1,14 @@
 package com.example.admin.yougohcalculadora;
 
 
-import android.animation.Animator;
 import android.animation.ObjectAnimator;
 import android.animation.PropertyValuesHolder;
-import android.animation.ValueAnimator;
-import android.annotation.SuppressLint;
-import android.content.res.ColorStateList;
-import android.graphics.Color;
 import android.graphics.drawable.AnimationDrawable;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.os.Handler;
-import android.transition.TransitionManager;
 import android.view.View;
-import android.view.animation.Animation;
-import android.view.animation.AnimationUtils;
-import android.view.animation.TranslateAnimation;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -226,52 +217,40 @@ public class TelaCalculadora extends AppCompatActivity {
             public void onClick(View v) {
                 switch (v.getId()) {
                     case R.id.botao0:
-                        lifePoint.setText(lifePoint.getText() + "0");
-                        operadorAtivo = false;
+                        apertaNumero(botao0,lifePoint);
                         break;
                     case R.id.botao1id:
-                        lifePoint.setText(lifePoint.getText() + "1");
-                        operadorAtivo = false;
+                        apertaNumero(botao1,lifePoint);
                         break;
                     case R.id.botao2id:
-                        lifePoint.setText(lifePoint.getText() + "2");
-                        operadorAtivo = false;
+                        apertaNumero(botao2,lifePoint);
                         break;
                     case R.id.botao3id:
-                        lifePoint.setText(lifePoint.getText() + "3");
-                        operadorAtivo = false;
+                        apertaNumero(botao3,lifePoint);
                         break;
                     case R.id.botao4id:
-                        lifePoint.setText(lifePoint.getText() + "4");
-                        operadorAtivo = false;
+                        apertaNumero(botao4,lifePoint);
                         break;
                     case R.id.botao5id:
-                        lifePoint.setText(lifePoint.getText() + "5");
-                        operadorAtivo = false;
+                        apertaNumero(botao5,lifePoint);
                         break;
                     case R.id.botao6id:
-                        lifePoint.setText(lifePoint.getText() + "6");
-                        operadorAtivo = false;
+                        apertaNumero(botao6,lifePoint);
                         break;
                     case R.id.botao7id:
-                        lifePoint.setText(lifePoint.getText() + "7");
-                        operadorAtivo = false;
+                        apertaNumero(botao7,lifePoint);
                         break;
                     case R.id.botao8id:
-                        lifePoint.setText(lifePoint.getText() + "8");
-                        operadorAtivo = false;
+                        apertaNumero(botao8,lifePoint);
                         break;
                     case R.id.botao9id:
-                        lifePoint.setText(lifePoint.getText() + "9");
-                        operadorAtivo = false;
+                        apertaNumero(botao9,lifePoint);
                         break;
                     case R.id.botao1000id:
-                        lifePoint.setText(lifePoint.getText() + "1000");
-                        operadorAtivo = false;
+                        apertaNumero(botao1000,lifePoint);
                         break;
                     case R.id.botao500id:
-                        lifePoint.setText(lifePoint.getText() + "500");
-                        operadorAtivo = false;
+                        apertaNumero(botao500,lifePoint);
                         break;
                     case R.id.botaoSomar:
                         LPtamanho = lifePoint.getText().toString();
@@ -295,11 +274,14 @@ public class TelaCalculadora extends AppCompatActivity {
                         char ultimoDigito;
                         if (delete.length() > 0) {
                             delete = delete.substring(0, delete.length() - 1);
-                            ultimoDigito = delete.charAt(delete.length() - 1 );
-                            lifePoint.setText(delete);
-                            if(ultimoDigito == '-' || ultimoDigito == '+'){
-                                operadorAtivo = true;
+                            if(delete.length() > 0){
+                                ultimoDigito = delete.charAt(delete.length() - 1 );
+
+                                if(ultimoDigito == '-' || ultimoDigito == '+'){
+                                    operadorAtivo = true;
+                                }
                             }
+                            lifePoint.setText(delete);
                         }
                         break;
                     case R.id.lifePointsP1:
@@ -657,5 +639,9 @@ public class TelaCalculadora extends AppCompatActivity {
         }catch(Exception e){
             e.printStackTrace();
         }
+    }
+    public void apertaNumero(Button botao, TextView lifePoint){
+        lifePoint.setText(lifePoint.getText() + botao.getText().toString());
+        operadorAtivo = false;
     }
 }

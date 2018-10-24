@@ -12,7 +12,7 @@
         android:id="@+id/layoutGeralId"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="#B378D9"
+        android:background="@drawable/fundo_xyz"
         android:visibility="visible">
 
         <ImageView
@@ -519,9 +519,9 @@
             android:layout_height="199dp"
             android:layout_marginStart="160dp"
             android:layout_marginEnd="160dp"
-            android:layout_marginBottom="124dp"
+            android:layout_marginBottom="123dp"
             android:alpha="1"
-            android:background="#7F32B0"
+            android:background="@drawable/shape_menus"
             android:visibility="invisible"
             app:layout_constraintBottom_toBottomOf="@+id/layoutCalculadoraId"
             app:layout_constraintEnd_toEndOf="parent"
@@ -582,13 +582,12 @@
             android:layout_width="147dp"
             android:layout_height="70dp"
             android:layout_marginTop="135dp"
-            android:layout_marginBottom="9dp"
-            android:background="@color/cor_fundo_black"
+            android:layout_marginBottom="135dp"
+            android:background="@drawable/shape_menus"
             android:visibility="invisible"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.113">
+            app:layout_constraintTop_toTopOf="parent">
 
             <ImageView
                 android:id="@+id/recompor"
@@ -602,7 +601,7 @@
 
             <ImageView
                 android:id="@+id/animacao_dado"
-                android:layout_width="60dp"
+                android:layout_width="61dp"
                 android:layout_height="60dp"
                 android:layout_marginStart="68dp"
                 android:layout_marginBottom="8dp"
@@ -611,7 +610,8 @@
                 android:visibility="visible"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="1.0" />
 
         </android.support.constraint.ConstraintLayout>
 
