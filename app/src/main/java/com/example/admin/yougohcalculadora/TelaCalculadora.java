@@ -17,7 +17,6 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import java.lang.String;
-import java.sql.SQLData;
 import java.util.ArrayList;
 import java.util.Random;
 
@@ -163,7 +162,7 @@ public class TelaCalculadora extends AppCompatActivity {
         //instancia o banco de dados;
         bancoDuelista = openOrCreateDatabase("BancoDuelista",MODE_PRIVATE, null);
         //criar as tabelas
-        bancoDuelista.execSQL("CREATE TABLE IF NOT EXISTS duelista(id INTEGER PRIMARY KEY AUTOINCREMENT, nome VARCHAR, vitorias INTEGER, derrotas INTEGER, imagem BLOB)");
+        bancoDuelista.execSQL("CREATE TABLE IF NOT EXISTS duelista(id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, nome VARCHAR NOT NULL , vitorias INTEGER NOT NULL, derrotas INTEGER NOT NULL, imagem BLOB)");
     }
 
     private View.OnLongClickListener Options = new View.OnLongClickListener() {
@@ -265,32 +264,17 @@ public class TelaCalculadora extends AppCompatActivity {
                         }
                         break;
                     case R.id.lifePointsP1:
-                        // liberaoperador
-                        operadorAtivo = false;
-                        lifePoint.setText(LPplayer1.getText());
-                        ativarPlayer(duelista1,listaDuelista,listaDeImagem);
+
+                        ativarPlayer(duelista1,listaDuelista,listaDeImagem,lifePoint);
                         break;
                     case R.id.lifePointsP2:
-                        // liberaoperador
-                        operadorAtivo = false;
-                        lifePoint.setText((LPplayer2.getText()));
-                        ativarPlayer(duelista2,listaDuelista,listaDeImagem);
+                        ativarPlayer(duelista2,listaDuelista,listaDeImagem,lifePoint);
                         break;
                     case R.id.lifePointsP3:
-                        // liberaoperador
-                        operadorAtivo = false;
-
-                        lifePoint.setText(LPplayer3.getText());
-                        ativarPlayer(duelista3,listaDuelista,listaDeImagem);
-
+                        ativarPlayer(duelista3,listaDuelista,listaDeImagem,lifePoint);
                         break;
                     case R.id.lifePointsP4:
-                        // liberaoperador
-                        operadorAtivo = false;
-
-                        lifePoint.setText(LPplayer4.getText());
-                        ativarPlayer(duelista4,listaDuelista,listaDeImagem);
-
+                        ativarPlayer(duelista4,listaDuelista,listaDeImagem,lifePoint);
                         break;
                     case R.id.botaoOkay:
                         alteraNome = editarNomePlayer.getText().toString();
@@ -317,30 +301,16 @@ public class TelaCalculadora extends AppCompatActivity {
                         hide();
                         break;
                     case R.id.player1id:
-                        // liberaoperador
-                        operadorAtivo = false;
-                        lifePoint.setText(LPplayer1.getText());
-                        ativarPlayer(duelista1, listaDuelista,listaDeImagem);
+                        ativarPlayer(duelista1, listaDuelista,listaDeImagem,lifePoint);
                         break;
                     case R.id.player2id:
-                        // liberaoperador
-                        operadorAtivo = false;
-
-                        lifePoint.setText((LPplayer2.getText()));
-                        ativarPlayer(duelista2,listaDuelista,listaDeImagem);
+                        ativarPlayer(duelista2,listaDuelista,listaDeImagem,lifePoint);
                         break;
                     case R.id.player3id:
-                        // liberaoperador
-                        operadorAtivo = false;
-
-                        lifePoint.setText(LPplayer3.getText());
-                        ativarPlayer(duelista3,listaDuelista,listaDeImagem);
+                        ativarPlayer(duelista3,listaDuelista,listaDeImagem,lifePoint);
                         break;
                     case R.id.player4id:
-                        // liberaoperador
-                        operadorAtivo = false;
-                        lifePoint.setText(LPplayer4.getText());
-                        ativarPlayer(duelista4, listaDuelista,listaDeImagem);
+                        ativarPlayer(duelista4, listaDuelista,listaDeImagem,lifePoint);
                         break;
                     case R.id.layoutGeralId:
                         hide();
@@ -432,12 +402,13 @@ public class TelaCalculadora extends AppCompatActivity {
         return diminuido;
     }
 
-    public void ativarPlayer(Duelista duelAtivar, ArrayList<Duelista> lista, ArrayList<ImageView> listaImagens) {
+    public void ativarPlayer(Duelista duelAtivar, ArrayList<Duelista> lista, ArrayList<ImageView> listaImagens, TextView lp) {
         try {
             for (int i = 0; i < lista.size() & i < listaImagens.size(); i++) {
                 if (duelAtivar.equals(lista.get(i))) {
                     duelAtivar.setAtivo(true);
                     listaImagens.get(i).setAlpha(1.0f);
+                    lp.setText(duelAtivar.getLifepoint());
                 } else {
                     lista.get(i).setAtivo(false);
                     listaImagens.get(i).setAlpha(0.62f);
@@ -446,6 +417,7 @@ public class TelaCalculadora extends AppCompatActivity {
         }catch (Exception e){
             e.printStackTrace();
         }
+        operadorAtivo = false;
     }
 
     public void recomporLifesPoints(ArrayList<Duelista> listaPlayers, ArrayList<TextView> listaDeHps) {
