@@ -3,6 +3,7 @@ package com.example.admin.yougohcalculadora;
 
 import android.animation.ObjectAnimator;
 import android.animation.PropertyValuesHolder;
+import android.database.sqlite.SQLiteDatabase;
 import android.graphics.drawable.AnimationDrawable;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
@@ -13,14 +14,16 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.lang.String;
+import java.sql.SQLData;
 import java.util.ArrayList;
 import java.util.Random;
 
 
 public class TelaCalculadora extends AppCompatActivity {
-
+    private SQLiteDatabase bancoDuelista;
     private static final int UI_ANIMATION_DELAY = 30;
     private final Handler mHideHandler = new Handler();
     private View apresentaOptions;
@@ -40,8 +43,7 @@ public class TelaCalculadora extends AppCompatActivity {
 
     private Boolean operadorAtivo = true;
 
-    Button botao0, botao1, botao2, botao3, botao4, botao5, botao6, botao7, botao8, botao9;
-    Button botao500, botao1000;
+    Button botao0, botao1, botao2, botao3, botao4, botao5, botao6, botao7, botao8, botao9, botao500, botao1000;
     Button deletar, botaoSomar, botaoSubtrair, botaoResultado1, botaoResultado2, botaoOkay, botaoCancelar;
 
     //String para delete e altera nome
@@ -52,6 +54,7 @@ public class TelaCalculadora extends AppCompatActivity {
 
     //declaração das imageView dos players, recompor e dado;
     ImageView imagemP1, imagemP2, imagemP3, imagemP4, recomporLP;
+    //view animação dado
     View animacao_dado;
 
     //Layout de menu e Layout Geral;
@@ -63,7 +66,8 @@ public class TelaCalculadora extends AppCompatActivity {
     // editor de nome
     EditText editarNomePlayer;
     //Array de duelista
-    ArrayList<Duelista> listaDuelista;
+    ArrayList<Duelista> listaDuelista;    ArrayList<ImageView> listaDeImagem;    ArrayList<TextView> listaDeHps;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -75,20 +79,13 @@ public class TelaCalculadora extends AppCompatActivity {
         apresentaOptions = findViewById(R.id.layoutId);
         layoutGeral = findViewById(R.id.layoutGeralId);
 
-        botao0 = findViewById(R.id.botao0);
-        botao1 = findViewById(R.id.botao1id);
-        botao2 = findViewById(R.id.botao2id);
-        botao3 = findViewById(R.id.botao3id);
-        botao4 = findViewById(R.id.botao4id);
-        botao5 = findViewById(R.id.botao5id);
-        botao6 = findViewById(R.id.botao6id);
-        botao7 = findViewById(R.id.botao7id);
-        botao8 = findViewById(R.id.botao8id);
-        botao9 = findViewById(R.id.botao9id);
-        botao500 = findViewById(R.id.botao500id);
-        botao1000 = findViewById(R.id.botao1000id);
-        botaoSomar = findViewById(R.id.botaoSomar);
-        botaoSubtrair = findViewById(R.id.botaoSubtrair);
+        botao0 = findViewById(R.id.botao0);        botao1 = findViewById(R.id.botao1id);
+        botao2 = findViewById(R.id.botao2id);        botao3 = findViewById(R.id.botao3id);
+        botao4 = findViewById(R.id.botao4id);        botao5 = findViewById(R.id.botao5id);
+        botao6 = findViewById(R.id.botao6id);        botao7 = findViewById(R.id.botao7id);
+        botao8 = findViewById(R.id.botao8id);        botao9 = findViewById(R.id.botao9id);
+        botao500 = findViewById(R.id.botao500id);        botao1000 = findViewById(R.id.botao1000id);
+        botaoSomar = findViewById(R.id.botaoSomar);        botaoSubtrair = findViewById(R.id.botaoSubtrair);
         deletar = findViewById(R.id.deleteButton);
         botaoResultado1 = findViewById(R.id.idResultado1);
         botaoResultado2 = findViewById(R.id.idResultado2);
@@ -98,100 +95,84 @@ public class TelaCalculadora extends AppCompatActivity {
 
         // setando os clicks
 
-        botao0.setOnClickListener(clickBotao);
-        botao1.setOnClickListener(clickBotao);
-        botao2.setOnClickListener(clickBotao);
-        botao3.setOnClickListener(clickBotao);
-        botao4.setOnClickListener(clickBotao);
-        botao5.setOnClickListener(clickBotao);
-        botao6.setOnClickListener(clickBotao);
-        botao7.setOnClickListener(clickBotao);
-        botao8.setOnClickListener(clickBotao);
-        botao9.setOnClickListener(clickBotao);
-        botao1000.setOnClickListener(clickBotao);
-        botao500.setOnClickListener(clickBotao);
+        botao0.setOnClickListener(clickBotao);        botao1.setOnClickListener(clickBotao);
+        botao2.setOnClickListener(clickBotao);        botao3.setOnClickListener(clickBotao);
+        botao4.setOnClickListener(clickBotao);        botao5.setOnClickListener(clickBotao);
+        botao6.setOnClickListener(clickBotao);        botao7.setOnClickListener(clickBotao);
+        botao8.setOnClickListener(clickBotao);        botao9.setOnClickListener(clickBotao);
+        botao1000.setOnClickListener(clickBotao);        botao500.setOnClickListener(clickBotao);
         deletar.setOnClickListener(clickBotao);
-        botaoSomar.setOnClickListener(clickBotao);
-        botaoSubtrair.setOnClickListener(clickBotao);
-        botaoResultado1.setOnClickListener(clickBotao);
-        botaoResultado2.setOnClickListener(clickBotao);
+        botaoSomar.setOnClickListener(clickBotao);        botaoSubtrair.setOnClickListener(clickBotao);
+        botaoResultado1.setOnClickListener(clickBotao);        botaoResultado2.setOnClickListener(clickBotao);
         botaoOkay.setOnClickListener(clickBotao);
         botaoCancelar.setOnClickListener(clickBotao);
         layoutGeral.setOnClickListener(clickBotao);
 
         //instanciaçao dos botoes dos players
 
-        imagemP1 = findViewById(R.id.player1id);
-        imagemP2 = findViewById(R.id.player2id);
-        imagemP3 = findViewById(R.id.player3id);
-        imagemP4 = findViewById(R.id.player4id);
+        imagemP1 = findViewById(R.id.player1id); imagemP2 = findViewById(R.id.player2id);
+        imagemP3 = findViewById(R.id.player3id); imagemP4 = findViewById(R.id.player4id);
 
 
-        nomePlayer1 = findViewById(R.id.nameP1);
-        nomePlayer2 = findViewById(R.id.nameP2);
-        nomePlayer3 = findViewById(R.id.nameP3);
-        nomePlayer4 = findViewById(R.id.nameP4);
+        nomePlayer1 = findViewById(R.id.nameP1);        nomePlayer2 = findViewById(R.id.nameP2);
+        nomePlayer3 = findViewById(R.id.nameP3);        nomePlayer4 = findViewById(R.id.nameP4);
         recomporLP = findViewById(R.id.recompor);
 
         //instanciação do Lifepoints
-        LPplayer1 = findViewById(R.id.lifePointsP1);
-        LPplayer2 = findViewById(R.id.lifePointsP2);
-        LPplayer3 = findViewById(R.id.lifePointsP3);
-        LPplayer4 = findViewById(R.id.lifePointsP4);
+        LPplayer1 = findViewById(R.id.lifePointsP1);        LPplayer2 = findViewById(R.id.lifePointsP2);
+        LPplayer3 = findViewById(R.id.lifePointsP3);        LPplayer4 = findViewById(R.id.lifePointsP4);
         animacao_dado = findViewById(R.id.animacao_dado);
 
-        LPplayer1.setOnClickListener(clickBotao);
-        LPplayer2.setOnClickListener(clickBotao);
-        LPplayer3.setOnClickListener(clickBotao);
-        LPplayer4.setOnClickListener(clickBotao);
+        LPplayer1.setOnClickListener(clickBotao);        LPplayer2.setOnClickListener(clickBotao);
+        LPplayer3.setOnClickListener(clickBotao);        LPplayer4.setOnClickListener(clickBotao);
 
         //instanciação do visor
         lifePoint = findViewById(R.id.visorId);
 
-        imagemP1.setOnLongClickListener(clickLongo);
-        imagemP2.setOnLongClickListener(clickLongo);
-        imagemP3.setOnLongClickListener(clickLongo);
-        imagemP4.setOnLongClickListener(clickLongo);
+        imagemP1.setOnLongClickListener(clickLongo);        imagemP2.setOnLongClickListener(clickLongo);
+        imagemP3.setOnLongClickListener(clickLongo);        imagemP4.setOnLongClickListener(clickLongo);
 
-        imagemP1.setOnClickListener(clickBotao);
-        imagemP2.setOnClickListener(clickBotao);
-        imagemP3.setOnClickListener(clickBotao);
-        imagemP4.setOnClickListener(clickBotao);
+        imagemP1.setOnClickListener(clickBotao);        imagemP2.setOnClickListener(clickBotao);
+        imagemP3.setOnClickListener(clickBotao);        imagemP4.setOnClickListener(clickBotao);
         recomporLP.setOnClickListener(clickBotao);
         animacao_dado.setOnClickListener(clickBotao);
 
-        duelista1 = new Duelista();
-        duelista2 = new Duelista();
-        duelista3 = new Duelista();
-        duelista4 = new Duelista();
+        duelista1 = new Duelista();        duelista2 = new Duelista();
+        duelista3 = new Duelista();        duelista4 = new Duelista();
         //layoutGeral.setOnLongClickListener(clickLongo);
         menu = findViewById(R.id.menuId);
         optionsID = findViewById(R.id.optionsId);
         layoutGeral.setOnLongClickListener(Options);
         editarNomePlayer = findViewById(R.id.EditNomePlayer);
 
-        duelista1 = new Duelista();
-        duelista2 = new Duelista();
-        duelista4 = new Duelista();
-        duelista3 = new Duelista();
+        duelista1 = new Duelista();        duelista2 = new Duelista();
+        duelista4 = new Duelista();        duelista3 = new Duelista();
 
         //ArrayList Duelista
         listaDuelista = new ArrayList<>();
-        listaDuelista.add(duelista1);
-        listaDuelista.add(duelista2);
-        listaDuelista.add(duelista3);
-        listaDuelista.add(duelista4);
+        listaDuelista.add(duelista1);        listaDuelista.add(duelista2);
+        listaDuelista.add(duelista3);        listaDuelista.add(duelista4);
+        //adiciona as imagens dos players em uma arraylist
+        listaDeImagem = new ArrayList<>();
+        listaDeImagem.add(imagemP1);        listaDeImagem.add(imagemP2);
+        listaDeImagem.add(imagemP3);        listaDeImagem.add(imagemP4);
+        //adicionar os lps dos players em uma arraylist;
+        listaDeHps = new ArrayList<>();
+        listaDeHps.add(LPplayer1);        listaDeHps.add(LPplayer2);
+        listaDeHps.add(LPplayer3);        listaDeHps.add(LPplayer4);
+        //instancia o banco de dados;
+        bancoDuelista = openOrCreateDatabase("BancoDuelista",MODE_PRIVATE, null);
+        //criar as tabelas
+        bancoDuelista.execSQL("CREATE TABLE IF NOT EXISTS duelista(id INTEGER PRIMARY KEY AUTOINCREMENT, nome VARCHAR, vitorias INTEGER, derrotas INTEGER, imagem BLOB)");
     }
 
     private View.OnLongClickListener Options = new View.OnLongClickListener() {
         @Override
         public boolean onLongClick(View view) {
-            if (true) {
-                if (optionsID.getVisibility() == optionsID.INVISIBLE) {
-                    optionsID.setVisibility(optionsID.VISIBLE);
-                } else {
-                    optionsID.setVisibility(optionsID.INVISIBLE);
-                }
+            if (optionsID.getVisibility() == View.INVISIBLE) {
+                optionsID.setVisibility(View.VISIBLE);
+            } else {
+                optionsID.setVisibility(View.INVISIBLE);
             }
             return false;
         }
@@ -199,12 +180,10 @@ public class TelaCalculadora extends AppCompatActivity {
     private View.OnLongClickListener clickLongo = new View.OnLongClickListener() {
         @Override
         public boolean onLongClick(View view) {
-            if (true) {
-                if (menu.getVisibility() == menu.INVISIBLE) {
-                    menu.setVisibility(menu.VISIBLE);
-                } else {
-                    menu.setVisibility(menu.INVISIBLE);
-                }
+            if (menu.getVisibility() == View.INVISIBLE) {
+                menu.setVisibility(View.VISIBLE);
+            } else {
+                menu.setVisibility(View.INVISIBLE);
             }
             return false;
         }
@@ -255,17 +234,18 @@ public class TelaCalculadora extends AppCompatActivity {
                     case R.id.botaoSomar:
                         LPtamanho = lifePoint.getText().toString();
                         if (operadorAtivo | LPtamanho.length() <= 0) {
+                            Toast.makeText(getApplicationContext(), "Tente colocar um número antes.", Toast.LENGTH_SHORT).show();
                         } else {
-                            lifePoint.setText(lifePoint.getText() + "+");
+                            apertaNumero(botaoSomar,lifePoint);
                             operadorAtivo = true;
                         }
                         break;
                     case R.id.botaoSubtrair:
                         LPtamanho = lifePoint.getText().toString();
                         if (operadorAtivo | LPtamanho.length() <= 0) {
-
+                            Toast.makeText(getApplicationContext(), "Tente colocar um número antes.", Toast.LENGTH_SHORT).show();
                         } else {
-                            lifePoint.setText(lifePoint.getText() + "-");
+                            apertaNumero(botaoSubtrair,lifePoint);
                             operadorAtivo = true;
                         }
                         break;
@@ -288,59 +268,29 @@ public class TelaCalculadora extends AppCompatActivity {
                         // liberaoperador
                         operadorAtivo = false;
                         lifePoint.setText(LPplayer1.getText());
-                        ativarPlayer(duelista1,listaDuelista);
-                        // ilumina o player selecionado
-                        if (duelista1.isAtivo()) {
-                            imagemP1.getBackground().setAlpha(255);
-                            imagemP2.setAlpha(130);
-                            imagemP3.getBackground().setAlpha(130);
-                            imagemP4.getBackground().setAlpha(130);
-                        }
+                        ativarPlayer(duelista1,listaDuelista,listaDeImagem);
                         break;
                     case R.id.lifePointsP2:
                         // liberaoperador
                         operadorAtivo = false;
-
                         lifePoint.setText((LPplayer2.getText()));
-                        ativarPlayer(duelista2,listaDuelista);
-
-                        // ilumina o player selecionado
-                        if (duelista2.isAtivo()) {
-                            imagemP2.setAlpha(255);
-                            imagemP1.getBackground().setAlpha(130);
-                            imagemP3.getBackground().setAlpha(130);
-                            imagemP4.getBackground().setAlpha(130);
-                        }
+                        ativarPlayer(duelista2,listaDuelista,listaDeImagem);
                         break;
                     case R.id.lifePointsP3:
                         // liberaoperador
                         operadorAtivo = false;
 
                         lifePoint.setText(LPplayer3.getText());
-                        ativarPlayer(duelista3,listaDuelista);
+                        ativarPlayer(duelista3,listaDuelista,listaDeImagem);
 
-                        // ilumina o player selecionado
-                        if (duelista3.isAtivo()) {
-                            imagemP3.getBackground().setAlpha(255);
-                            imagemP1.getBackground().setAlpha(130);
-                            imagemP2.setAlpha(130);
-                            imagemP4.getBackground().setAlpha(130);
-                        }
                         break;
                     case R.id.lifePointsP4:
                         // liberaoperador
                         operadorAtivo = false;
 
                         lifePoint.setText(LPplayer4.getText());
-                        ativarPlayer(duelista4,listaDuelista);
+                        ativarPlayer(duelista4,listaDuelista,listaDeImagem);
 
-                        // ilumina o player selecionado
-                        if (duelista4.isAtivo()) {
-                            imagemP4.getBackground().setAlpha(255);
-                            imagemP1.getBackground().setAlpha(130);
-                            imagemP3.getBackground().setAlpha(130);
-                            imagemP2.setAlpha(130);
-                        }
                         break;
                     case R.id.botaoOkay:
                         alteraNome = editarNomePlayer.getText().toString();
@@ -357,68 +307,40 @@ public class TelaCalculadora extends AppCompatActivity {
                             duelista4.setNome((alteraNome));
                             nomePlayer4.setText(duelista4.getNome());
                         }
-                        menu.setVisibility(menu.INVISIBLE);
+                        menu.setVisibility(View.INVISIBLE);
                         editarNomePlayer.setText("");
                         hide();
 
                         break;
                     case R.id.botaoCancelar:
-                        menu.setVisibility(menu.INVISIBLE);
+                        menu.setVisibility(View.INVISIBLE);
                         hide();
                         break;
                     case R.id.player1id:
                         // liberaoperador
                         operadorAtivo = false;
                         lifePoint.setText(LPplayer1.getText());
-                        ativarPlayer(duelista1, listaDuelista);
-
-                        if (duelista1.isAtivo()) {
-                            imagemP1.getBackground().setAlpha(255);
-                            imagemP2.setAlpha(130);
-                            imagemP3.getBackground().setAlpha(130);
-                            imagemP4.getBackground().setAlpha(130);
-                        }
+                        ativarPlayer(duelista1, listaDuelista,listaDeImagem);
                         break;
                     case R.id.player2id:
                         // liberaoperador
                         operadorAtivo = false;
 
                         lifePoint.setText((LPplayer2.getText()));
-                        ativarPlayer(duelista2,listaDuelista);
-
-                        if (duelista2.isAtivo()) {
-                            imagemP2.setAlpha(255);
-                            imagemP1.getBackground().setAlpha(130);
-                            imagemP3.getBackground().setAlpha(130);
-                            imagemP4.getBackground().setAlpha(130);
-                        }
+                        ativarPlayer(duelista2,listaDuelista,listaDeImagem);
                         break;
                     case R.id.player3id:
                         // liberaoperador
                         operadorAtivo = false;
 
                         lifePoint.setText(LPplayer3.getText());
-                        ativarPlayer(duelista3,listaDuelista);
-                        if (duelista3.isAtivo()) {
-                            imagemP3.getBackground().setAlpha(255);
-                            imagemP1.getBackground().setAlpha(130);
-                            imagemP2.setAlpha(130);
-                            imagemP4.getBackground().setAlpha(130);
-                        }
+                        ativarPlayer(duelista3,listaDuelista,listaDeImagem);
                         break;
                     case R.id.player4id:
                         // liberaoperador
                         operadorAtivo = false;
-
                         lifePoint.setText(LPplayer4.getText());
-                        ativarPlayer(duelista4, listaDuelista);
-
-                        if (duelista4.isAtivo()) {
-                            imagemP4.getBackground().setAlpha(255);
-                            imagemP1.getBackground().setAlpha(130);
-                            imagemP3.getBackground().setAlpha(130);
-                            imagemP2.setAlpha(130);
-                        }
+                        ativarPlayer(duelista4, listaDuelista,listaDeImagem);
                         break;
                     case R.id.layoutGeralId:
                         hide();
@@ -429,40 +351,14 @@ public class TelaCalculadora extends AppCompatActivity {
                             resultado = somar(lifePoint.getText().toString());
                             lifePoint.setText(String.valueOf(resultado));
                             operadorAtivo = false;
-
-                            // verifica qual player está ativo.
-                            if (duelista1.isAtivo()) {
-                                duelista1.setLifepoint(lifePoint.getText().toString());
-                                LPplayer1.setText(duelista1.getLifepoint());
-                            } else if (duelista2.isAtivo()) {
-                                duelista2.setLifepoint(lifePoint.getText().toString());
-                                LPplayer2.setText(duelista2.getLifepoint());
-                            } else if (duelista3.isAtivo()) {
-                                duelista3.setLifepoint(lifePoint.getText().toString());
-                                LPplayer3.setText(duelista3.getLifepoint());
-                            } else if (duelista4.isAtivo()) {
-                                duelista4.setLifepoint(lifePoint.getText().toString());
-                                LPplayer4.setText(duelista4.getLifepoint());
-                            }
+                            //verifica qual player está ativo;
+                            resultadoCalculo(lifePoint,listaDuelista,listaDeHps);
                         }
                         if (lifePoint.getText().toString().indexOf("-") > 0) {
                             resultado = diminuir(lifePoint.getText().toString());
                             lifePoint.setText(String.valueOf(resultado));
-
-                            // verifica qual player está ativo.
-                            if (duelista1.isAtivo()) {
-                                duelista1.setLifepoint(lifePoint.getText().toString());
-                                LPplayer1.setText(duelista1.getLifepoint());
-                            } else if (duelista2.isAtivo()) {
-                                duelista2.setLifepoint(lifePoint.getText().toString());
-                                LPplayer2.setText(duelista2.getLifepoint());
-                            } else if (duelista3.isAtivo()) {
-                                duelista3.setLifepoint(lifePoint.getText().toString());
-                                LPplayer3.setText(duelista3.getLifepoint());
-                            } else if (duelista4.isAtivo()) {
-                                duelista4.setLifepoint(lifePoint.getText().toString());
-                                LPplayer4.setText(duelista4.getLifepoint());
-                            }
+                            //verifica qual player está ativo;
+                            resultadoCalculo(lifePoint,listaDuelista,listaDeHps);
                         }
                         break;
                     case R.id.idResultado2:
@@ -472,38 +368,18 @@ public class TelaCalculadora extends AppCompatActivity {
                             operadorAtivo = false;
 
                             // verifica qual player está ativo.
-                            if (duelista1.isAtivo()) {
-                                duelista1.setLifepoint(lifePoint.getText().toString());
-                                LPplayer1.setText(duelista1.getLifepoint());
-                            } else if (duelista2.isAtivo()) {
-                                duelista2.setLifepoint(lifePoint.getText().toString());
-                                LPplayer2.setText(duelista2.getLifepoint());
-                            } else if (duelista3.isAtivo()) {
-                                duelista3.setLifepoint(lifePoint.getText().toString());
-                                LPplayer3.setText(duelista3.getLifepoint());
-                            } else if (duelista4.isAtivo()) {
-                                duelista4.setLifepoint(lifePoint.getText().toString());
-                                LPplayer4.setText(duelista4.getLifepoint());
-                            }
+                            resultadoCalculo(lifePoint,listaDuelista,listaDeHps);
                         }
                         if (lifePoint.getText().toString().indexOf("-") > 0) {
                             resultado = diminuir(lifePoint.getText().toString());
                             lifePoint.setText(String.valueOf(resultado));
 
                             // verifica qual player está ativo.
-                            if (duelista1.isAtivo()) {
-                                resultadoCalculo(duelista1, lifePoint, LPplayer1);
-                            } else if (duelista2.isAtivo()) {
-                                resultadoCalculo(duelista2, lifePoint, LPplayer2);
-                            } else if (duelista3.isAtivo()) {
-                                resultadoCalculo(duelista3, lifePoint, LPplayer3);
-                            } else if (duelista4.isAtivo()) {
-                                resultadoCalculo(duelista4, lifePoint, LPplayer4);
-                            }
+                            resultadoCalculo(lifePoint,listaDuelista,listaDeHps);
                         }
                         break;
                     case R.id.recompor:
-                        recomporLifesPoints(duelista1, LPplayer1, duelista2, LPplayer2, duelista3, LPplayer3, duelista4, LPplayer4);
+                        recomporLifesPoints(listaDuelista, listaDeHps);
                         break;
                     case R.id.animacao_dado:
                         jogarDado(animacao_dado);
@@ -532,8 +408,8 @@ public class TelaCalculadora extends AppCompatActivity {
     public int somar(String recebeNum) {
         int soma = 0;
         String[] somaNum = recebeNum.split("\\+");
-        for (int i = 0; i < somaNum.length; i++) {
-            String num = somaNum[i];
+        for (String aSomaNum : somaNum) {
+            String num = aSomaNum;
             if (num.indexOf("-") > 0) {
                 num = String.valueOf(diminuir(num));
             }
@@ -556,13 +432,15 @@ public class TelaCalculadora extends AppCompatActivity {
         return diminuido;
     }
 
-    public void ativarPlayer(Duelista duelAtivar, ArrayList<Duelista> lista) {
+    public void ativarPlayer(Duelista duelAtivar, ArrayList<Duelista> lista, ArrayList<ImageView> listaImagens) {
         try {
-            for (int i = 0; i < lista.size(); i++) {
+            for (int i = 0; i < lista.size() & i < listaImagens.size(); i++) {
                 if (duelAtivar.equals(lista.get(i))) {
                     duelAtivar.setAtivo(true);
+                    listaImagens.get(i).setAlpha(1.0f);
                 } else {
                     lista.get(i).setAtivo(false);
+                    listaImagens.get(i).setAlpha(0.62f);
                 }
             }
         }catch (Exception e){
@@ -570,21 +448,20 @@ public class TelaCalculadora extends AppCompatActivity {
         }
     }
 
-    public void recomporLifesPoints(Duelista duel1, TextView lp1, Duelista duel2, TextView lp2, Duelista duel3, TextView lp3, Duelista duel4, TextView lp4) {
-        duel1.setLifepoint("8000");
-        duel2.setLifepoint("8000");
-        duel3.setLifepoint("8000");
-        duel4.setLifepoint("8000");
-        lp1.setText("8000");
-        lp2.setText("8000");
-        lp3.setText("8000");
-        lp4.setText("8000");
-
+    public void recomporLifesPoints(ArrayList<Duelista> listaPlayers, ArrayList<TextView> listaDeHps) {
+        for(int i = 0; i < listaPlayers.size() & i < listaDeHps.size(); i++){
+            listaPlayers.get(i).setLifepoint(getString(R.string.lifepoint));
+            listaDeHps.get(i).setText(getString(R.string.lifepoint));
+        }
     }
 
-    public void resultadoCalculo(Duelista duel, TextView lp, TextView lpPlayer) {
-        duel.setLifepoint(lp.getText().toString());
-        lpPlayer.setText(lp.getText().toString());
+     public void resultadoCalculo(TextView lp, ArrayList<Duelista> listaPlayers, ArrayList<TextView> listaDeHp) {
+         for(int i = 0; i < listaPlayers.size(); i++){
+             if(listaPlayers.get(i).isAtivo()){
+                 listaPlayers.get(i).setLifepoint(lp.getText().toString());
+                 listaDeHp.get(i).setText(listaPlayers.get(i).getLifepoint());
+             }
+         }
     }
 
     public void jogarDado(View dado) {
@@ -598,8 +475,7 @@ public class TelaCalculadora extends AppCompatActivity {
                 PropertyValuesHolder animX = PropertyValuesHolder.ofFloat("scaleX", 1f, 2.5f, 1f);
                 PropertyValuesHolder animY = PropertyValuesHolder.ofFloat("scaleY", 1f, 2.5f, 1f);
 
-                ObjectAnimator anim = new ObjectAnimator();
-                anim.ofPropertyValuesHolder(dado, animX, animY).setDuration(1500).start();
+                ObjectAnimator.ofPropertyValuesHolder(dado, animX, animY).setDuration(1500).start();
 
                 if (numConvertido == 1) {
                     dado.setBackgroundResource(R.drawable.animacao_dado1);
@@ -643,5 +519,19 @@ public class TelaCalculadora extends AppCompatActivity {
     public void apertaNumero(Button botao, TextView lifePoint){
         lifePoint.setText(lifePoint.getText() + botao.getText().toString());
         operadorAtivo = false;
+    }
+    public void criarDuelista(Duelista duelista){
+       bancoDuelista.execSQL("INSERT INTO duelista(nome,vitorias,derrotas,imagem) VALUES ('" + duelista.getNome()
+               +"','" +duelista.getVitorias() + "','" + duelista.getDerrotas() + ")");
+    }
+    public void removerDuelista(){
+
+    }
+    public void selecionarDuelista(){
+
+    }public void atualizarDuelista(){
+
+    }public void listarDuelistas(){
+
     }
 }

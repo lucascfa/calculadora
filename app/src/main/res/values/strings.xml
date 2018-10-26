@@ -3,4 +3,5 @@
 
     <string name="title_activity_modo_dg">ModoDg</string>
     <string name="lifepoint">8000</string>
+    <string name="HP">8000</string>
 </resources>
