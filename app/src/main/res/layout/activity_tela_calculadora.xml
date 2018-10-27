@@ -17,7 +17,7 @@
 
         <ImageView
             android:id="@+id/player1id"
-            android:layout_width="101dp"
+            android:layout_width="100dp"
             android:layout_height="100dp"
             android:layout_marginStart="-1dp"
             android:alpha="1"
@@ -521,9 +521,11 @@
             android:layout_height="199dp"
             android:layout_marginStart="160dp"
             android:layout_marginEnd="160dp"
-            android:layout_marginBottom="123dp"
+            android:layout_marginBottom="118dp"
             android:alpha="1"
             android:background="@drawable/shape_menus"
+            android:focusableInTouchMode="false"
+            android:touchscreenBlocksFocus="false"
             android:visibility="visible"
             app:layout_constraintBottom_toBottomOf="@+id/layoutCalculadoraId"
             app:layout_constraintEnd_toEndOf="parent"
@@ -578,6 +580,17 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
+            <ListView
+                android:id="@+id/listaDeck"
+                android:layout_width="259dp"
+                android:layout_height="53dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="8dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/EditNomePlayer" />
+
         </android.support.constraint.ConstraintLayout>
 
         <android.support.constraint.ConstraintLayout
@@ -591,16 +604,6 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent">
-
-            <ImageView
-                android:id="@+id/recompor"
-                android:layout_width="30dp"
-                android:layout_height="40dp"
-                android:layout_marginStart="16dp"
-                android:layout_marginTop="16dp"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:srcCompat="@drawable/images" />
 
             <ImageView
                 android:id="@+id/animacao_dado"
@@ -621,12 +624,21 @@
             android:layout_height="70dp"
             android:layout_marginTop="135dp"
             android:layout_marginBottom="135dp"
-            android:background="@drawable/menu_player_shape"
+            android:background="@drawable/shape_menus_player"
             android:visibility="visible"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
 
+            <ImageView
+                android:id="@+id/recompor"
+                android:layout_width="30dp"
+                android:layout_height="40dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="16dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:srcCompat="@drawable/images" />
         </android.support.constraint.ConstraintLayout>
 
     </android.support.constraint.ConstraintLayout>
