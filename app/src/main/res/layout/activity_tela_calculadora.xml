@@ -524,7 +524,7 @@
             android:layout_marginBottom="123dp"
             android:alpha="1"
             android:background="@drawable/shape_menus"
-            android:visibility="invisible"
+            android:visibility="visible"
             app:layout_constraintBottom_toBottomOf="@+id/layoutCalculadoraId"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent">
@@ -569,9 +569,10 @@
                 android:layout_marginTop="32dp"
                 android:layout_marginEnd="8dp"
                 android:ems="10"
+                android:hint="Digite o nome"
                 android:inputType="textPersonName"
-                android:text="Player"
                 android:textColor="@color/PlayerNameColor"
+                android:textColorHint="@color/colorAccent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.083"
                 app:layout_constraintStart_toStartOf="parent"
@@ -586,7 +587,7 @@
             android:layout_marginTop="135dp"
             android:layout_marginBottom="135dp"
             android:background="@drawable/shape_menus"
-            android:visibility="invisible"
+            android:visibility="visible"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent">
@@ -603,17 +604,28 @@
 
             <ImageView
                 android:id="@+id/animacao_dado"
-                android:layout_width="61dp"
+                android:layout_width="60dp"
                 android:layout_height="60dp"
                 android:layout_marginStart="68dp"
-                android:layout_marginBottom="8dp"
                 android:adjustViewBounds="true"
                 android:background="@drawable/animacao_dado1"
                 android:visibility="visible"
-                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="1.0" />
+                app:layout_constraintTop_toTopOf="parent" />
+
+        </android.support.constraint.ConstraintLayout>
+
+        <android.support.constraint.ConstraintLayout
+            android:id="@+id/optionsPlayer"
+            android:layout_width="147dp"
+            android:layout_height="70dp"
+            android:layout_marginTop="135dp"
+            android:layout_marginBottom="135dp"
+            android:background="@drawable/menu_player_shape"
+            android:visibility="visible"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
 
         </android.support.constraint.ConstraintLayout>
 
