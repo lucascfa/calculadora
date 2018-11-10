@@ -9,25 +9,56 @@
     <android.support.constraint.ConstraintLayout
         android:id="@+id/layoutLista"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="55dp"
+        android:background="@drawable/shape_menus">
 
         <TextView
-            android:id="@+id/nome"
-            android:layout_width="200dp"
-            android:layout_height="40dp"
-            android:layout_marginStart="4dp"
-            android:layout_marginTop="16dp"
+            android:id="@+id/nomeplayer"
+            android:layout_width="150dp"
+            android:layout_height="25dp"
+            android:layout_marginStart="16dp"
+            android:text="Teste"
+            android:textColor="@color/colorAccent"
+            android:textSize="18sp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
+        <TextView
+            android:id="@+id/vitoriasPlayer"
+            android:layout_width="100dp"
+            android:layout_height="25dp"
+            android:layout_marginStart="16dp"
+            android:text="Teste"
+            android:textColor="@color/colorAccent"
+            android:textSize="18sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/nomeplayer" />
+
+        <TextView
+            android:id="@+id/derrotasPlayer"
+            android:layout_width="100dp"
+            android:layout_height="25dp"
+            android:layout_marginStart="50dp"
+            android:layout_marginTop="25dp"
+            android:layout_marginEnd="8dp"
+            android:text="Teste"
+            android:textColor="@color/colorAccent"
+            android:textSize="18sp"
+            app:layout_constraintEnd_toStartOf="@+id/imagemDeck"
+            app:layout_constraintStart_toEndOf="@+id/vitoriasPlayer"
+            app:layout_constraintTop_toTopOf="parent" />
+
         <ImageView
-            android:id="@+id/imagem"
+            android:id="@+id/imagemDeck"
             android:layout_width="50dp"
             android:layout_height="50dp"
-            android:layout_marginStart="108dp"
-            android:layout_marginTop="8dp"
-            app:layout_constraintStart_toEndOf="@+id/nome"
+            android:layout_marginTop="2dp"
+            android:layout_marginEnd="20dp"
+            android:layout_marginBottom="2dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
+
     </android.support.constraint.ConstraintLayout>
 
 </LinearLayout>
