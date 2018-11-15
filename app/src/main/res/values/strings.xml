@@ -6,4 +6,5 @@
     <string name="HP">8000</string>
     <string name="vitorias">Vitórias</string>
     <string name="derrotas">Derrotas</string>
+    <string name="cancelar">Cancelar</string>
 </resources>

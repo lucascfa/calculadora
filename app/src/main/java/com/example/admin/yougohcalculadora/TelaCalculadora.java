@@ -5,6 +5,7 @@ import android.animation.ObjectAnimator;
 import android.animation.PropertyValuesHolder;
 import android.database.sqlite.SQLiteDatabase;
 import android.graphics.drawable.AnimationDrawable;
+import android.support.constraint.ConstraintLayout;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -37,7 +38,8 @@ public class TelaCalculadora extends AppCompatActivity {
     //view animação dado
     View animacao_dado;
     //Layout de menu e Layout Geral;
-    View menu, layoutGeral, optionsID, menuplayers;
+    ConstraintLayout menu;
+    View layoutGeral, optionsID, menuplayers;
     //visibilidade do menu;
     int resultado;
     // string para tamanho do lp
@@ -71,12 +73,10 @@ public class TelaCalculadora extends AppCompatActivity {
     private View.OnLongClickListener Options = new View.OnLongClickListener() {
         @Override
         public boolean onLongClick(View view) {
-            if (optionsID.getVisibility() == View.INVISIBLE) {
-                optionsID.setVisibility(View.VISIBLE);
-                menuplayers.setVisibility(View.VISIBLE);
+            if (menu.getVisibility() == View.INVISIBLE) {
+                menu.setVisibility(View.VISIBLE);
             } else {
-                optionsID.setVisibility(View.INVISIBLE);
-                menuplayers.setVisibility(View.INVISIBLE);
+                menu.setVisibility(View.INVISIBLE);
             }
             return false;
         }
@@ -85,7 +85,8 @@ public class TelaCalculadora extends AppCompatActivity {
         @Override
         public boolean onLongClick(View view) {
             if (menu.getVisibility() == View.INVISIBLE) {
-                menu.setVisibility(View.VISIBLE);
+            menu.setVisibility(View.VISIBLE);
+                apresentarMenu(menu);
             } else {
                 menu.setVisibility(View.INVISIBLE);
             }
@@ -104,7 +105,7 @@ public class TelaCalculadora extends AppCompatActivity {
         apresentaOptions = findViewById(R.id.layoutId);
         layoutGeral = findViewById(R.id.layoutGeralId);
         menuplayers = findViewById(R.id.optionsPlayer);
-        listaDecks =  findViewById(R.id.listaDeck);
+        //listaDecks =  findViewById(R.id.listaDeck);
 
         botao0 = findViewById(R.id.botao0);
         botao1 = findViewById(R.id.botao1id);
@@ -123,8 +124,8 @@ public class TelaCalculadora extends AppCompatActivity {
         deletar = findViewById(R.id.deleteButton);
         botaoResultado1 = findViewById(R.id.idResultado1);
         botaoResultado2 = findViewById(R.id.idResultado2);
-        botaoOkay = findViewById(R.id.botaoOkay);
-        botaoCancelar = findViewById(R.id.botaoCancelar);
+        //botaoOkay = findViewById(R.id.botaoOkay);
+       // botaoCancelar = findViewById(R.id.botaoCancelar);
 
         //instanciaçao dos botoes dos players
 
@@ -207,6 +208,7 @@ public class TelaCalculadora extends AppCompatActivity {
         deckSixSamurai.setImagemDeck(4);
         deckSixSamurai.setNome("Six Samurai");
         listaImagensDeck.add(deckSixSamurai);
+
     }
 
     private void hide() {
@@ -221,7 +223,7 @@ public class TelaCalculadora extends AppCompatActivity {
     protected void onStart() {
         super.onStart();
         hide();
-        selecionarDuel();
+      //  selecionarDuel();
     }
 
     public int somar(String recebeNum) {
@@ -260,7 +262,7 @@ public class TelaCalculadora extends AppCompatActivity {
                     lp.setText(duelAtivar.getLifepoint());
                 } else {
                     lista.get(i).setAtivo(false);
-                    listaImagens.get(i).setAlpha(0.62f);
+                    listaImagens.get(i).setAlpha(0.45f);
                 }
             }
         } catch (Exception e) {
@@ -426,30 +428,6 @@ public class TelaCalculadora extends AppCompatActivity {
             case R.id.lifePointsP4:
                 ativarPlayer(duelista4, listaDuelista, listaDeImagem, lifePoint);
                 break;
-            case R.id.botaoOkay:
-                alteraNome = editarNomePlayer.getText().toString();
-                if (duelista1.isAtivo()) {
-                    duelista1.setNome(alteraNome);
-                    nomePlayer1.setText(duelista1.getNome());
-                } else if (duelista2.isAtivo()) {
-                    duelista2.setNome((alteraNome));
-                    nomePlayer2.setText(duelista2.getNome());
-                } else if (duelista3.isAtivo()) {
-                    duelista3.setNome((alteraNome));
-                    nomePlayer3.setText(duelista3.getNome());
-                } else if (duelista4.isAtivo()) {
-                    duelista4.setNome((alteraNome));
-                    nomePlayer4.setText(duelista4.getNome());
-                }
-                menu.setVisibility(View.INVISIBLE);
-                editarNomePlayer.setText("");
-                hide();
-
-                break;
-            case R.id.botaoCancelar:
-                menu.setVisibility(View.INVISIBLE);
-                hide();
-                break;
             case R.id.player1id:
                 ativarPlayer(duelista1, listaDuelista, listaDeImagem, lifePoint);
                 break;
@@ -466,6 +444,7 @@ public class TelaCalculadora extends AppCompatActivity {
                 hide();
                 break;
             // Setando os resultados
+
             case R.id.idResultado1:
                 if (lifePoint.getText().toString().indexOf("+") > 0) {
                     resultado = somar(lifePoint.getText().toString());
@@ -509,8 +488,13 @@ public class TelaCalculadora extends AppCompatActivity {
         }
     }
 
-    public void selecionarDuel (){
-            AdapterListaDecks adaptador = new AdapterListaDecks(this, listaImagensDeck);
-            listaDecks.setAdapter(adaptador);
+//    public void selecionarDuel (){
+//            AdapterListaDecks adaptador = new AdapterListaDecks(this, listaImagensDeck);
+//            listaDecks.setAdapter(adaptador);
+//    }
+
+    public void apresentarMenu(ConstraintLayout view){
+        View viewTeste = getLayoutInflater().inflate(R.layout.listar_players,view, false);
+        menu.addView(viewTeste);
     }
 }
