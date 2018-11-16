@@ -11,17 +11,18 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
+
 import java.lang.String;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
-
 
 
 public class TelaCalculadora extends AppCompatActivity {
@@ -29,12 +30,13 @@ public class TelaCalculadora extends AppCompatActivity {
     private final Handler mHideHandler = new Handler();
     Button botao0, botao1, botao2, botao3, botao4, botao5, botao6, botao7, botao8, botao9, botao500, botao1000;
     Button deletar, botaoSomar, botaoSubtrair, botaoResultado1, botaoResultado2, botaoOkay, botaoCancelar;
+
     //String para delete e altera nome
     String delete, alteraNome;
     //Ativadores dos players
     Duelista duelista1, duelista2, duelista3, duelista4;
     //declaração das imageView dos players, recompor e dado;
-    ImageView imagemP1, imagemP2, imagemP3, imagemP4, recomporLP;
+    ImageView imagemP1, imagemP2, imagemP3, imagemP4, recomporLP,botaoAddPlayer;
     //view animação dado
     View animacao_dado;
     //Layout de menu e Layout Geral;
@@ -53,7 +55,6 @@ public class TelaCalculadora extends AppCompatActivity {
 
     ListView listaDecks;
     List<Deck> listaImagensDeck;
-
 
     private SQLiteDatabase bancoDuelista;
     private View apresentaOptions;
@@ -85,8 +86,8 @@ public class TelaCalculadora extends AppCompatActivity {
         @Override
         public boolean onLongClick(View view) {
             if (menu.getVisibility() == View.INVISIBLE) {
-            menu.setVisibility(View.VISIBLE);
-                apresentarMenu(menu);
+                menu.setVisibility(View.VISIBLE);
+
             } else {
                 menu.setVisibility(View.INVISIBLE);
             }
@@ -100,13 +101,11 @@ public class TelaCalculadora extends AppCompatActivity {
 
         setContentView(R.layout.activity_tela_calculadora);
 
-       // editarNomePlayer = findViewById(R.id.EditNomePlayer);
+        // editarNomePlayer = findViewById(R.id.EditNomePlayer);
 
         apresentaOptions = findViewById(R.id.layoutId);
         layoutGeral = findViewById(R.id.layoutGeralId);
         menuplayers = findViewById(R.id.optionsPlayer);
-        //listaDecks =  findViewById(R.id.listaDeck);
-
         botao0 = findViewById(R.id.botao0);
         botao1 = findViewById(R.id.botao1id);
         botao2 = findViewById(R.id.botao2id);
@@ -124,8 +123,9 @@ public class TelaCalculadora extends AppCompatActivity {
         deletar = findViewById(R.id.deleteButton);
         botaoResultado1 = findViewById(R.id.idResultado1);
         botaoResultado2 = findViewById(R.id.idResultado2);
+        botaoAddPlayer  = findViewById(R.id.criar_player);
         //botaoOkay = findViewById(R.id.botaoOkay);
-       // botaoCancelar = findViewById(R.id.botaoCancelar);
+        // botaoCancelar = findViewById(R.id.botaoCancelar);
 
         //instanciaçao dos botoes dos players
 
@@ -133,7 +133,6 @@ public class TelaCalculadora extends AppCompatActivity {
         imagemP2 = findViewById(R.id.player2id);
         imagemP3 = findViewById(R.id.player3id);
         imagemP4 = findViewById(R.id.player4id);
-
 
         nomePlayer1 = findViewById(R.id.nameP1);
         nomePlayer2 = findViewById(R.id.nameP2);
@@ -209,6 +208,7 @@ public class TelaCalculadora extends AppCompatActivity {
         deckSixSamurai.setNome("Six Samurai");
         listaImagensDeck.add(deckSixSamurai);
 
+
     }
 
     private void hide() {
@@ -223,9 +223,13 @@ public class TelaCalculadora extends AppCompatActivity {
     protected void onStart() {
         super.onStart();
         hide();
-      //  selecionarDuel();
     }
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+        hide();
+    }
     public int somar(String recebeNum) {
         int soma = 0;
         String[] somaNum = recebeNum.split("\\+");
@@ -350,7 +354,7 @@ public class TelaCalculadora extends AppCompatActivity {
             case R.id.botao0:
                 apertaNumero(botao0, lifePoint);
                 break;
-             case R.id.botao1id:
+            case R.id.botao1id:
                 apertaNumero(botao1, lifePoint);
                 break;
             case R.id.botao2id:
@@ -483,18 +487,33 @@ public class TelaCalculadora extends AppCompatActivity {
             case R.id.animacao_dado:
                 jogarDado(animacao_dado);
                 break;
-            default:
+            case R.id.criar_player:
+                if(menu.getVisibility() == View.INVISIBLE){
+                   chamarTelaCriarPlayer(menu);
+                    menu.setVisibility(View.VISIBLE);
+                }else{
+                    menu.removeAllViews();
+                    menu.setVisibility(View.INVISIBLE);
+                }
 
+            default:
         }
     }
 
-//    public void selecionarDuel (){
-//            AdapterListaDecks adaptador = new AdapterListaDecks(this, listaImagensDeck);
-//            listaDecks.setAdapter(adaptador);
-//    }
+    public void listarDecks (ListView lista){
+        AdapterListaDecks adaptador = new AdapterListaDecks(this, listaImagensDeck);
+            lista.setAdapter(adaptador);
+    }
 
-    public void apresentarMenu(ConstraintLayout view){
-        View viewTeste = getLayoutInflater().inflate(R.layout.listar_players,view, false);
+    public void chamarTelaCriarPlayer(ConstraintLayout view) {
+        final View viewTeste = getLayoutInflater().inflate(R.layout.criar_player, view, false);
+        ListView listaDeck =  viewTeste.findViewById(R.id.listaDecksEscolher);
+        listarDecks(listaDeck);
+        listaDeck.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+            }
+        });
         menu.addView(viewTeste);
     }
 }

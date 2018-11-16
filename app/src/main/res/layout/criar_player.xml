@@ -7,14 +7,55 @@
     android:layout_height="330dp">
 
     <Button
-        android:id="@+id/button"
+        android:id="@+id/criar_botao"
+        style="@style/Widget.AppCompat.Button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
-        android:layout_marginStart="27dp"
-        android:layout_marginTop="250dp"
-        android:text="Botão teste"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="18dp"
+        android:background="@color/colorPrimary"
+        android:text="@string/criar"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/listaDecksEscolher" />
+
+    <EditText
+        android:id="@+id/editNomeDuelista"
+        android:layout_width="275dp"
+        android:layout_height="42dp"
+        android:layout_marginStart="18dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="20dp"
+        android:ems="10"
+        android:hint="Digite o nome do duelista"
+        android:textColor="@color/PlayerNameColor"
+        android:textColorHint="@color/colorAccent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.521"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/botaoCancelarCriar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="18dp"
+        android:layout_marginEnd="32dp"
+        android:background="@color/colorPrimary"
+        android:text="@string/cancelar"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/listaDecksEscolher" />
+
+    <ListView
+        android:id="@+id/listaDecksEscolher"
+        android:layout_width="271dp"
+        android:layout_height="155dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="36dp"
+        android:layout_marginEnd="20dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.518"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/editNomeDuelista" />
 </android.support.constraint.ConstraintLayout>

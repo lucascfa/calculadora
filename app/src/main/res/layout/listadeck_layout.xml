@@ -15,37 +15,14 @@
         <TextView
             android:id="@+id/nomeplayer"
             android:layout_width="150dp"
-            android:layout_height="25dp"
-            android:layout_marginStart="16dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="28dp"
+            android:layout_marginTop="12dp"
             android:text="Teste"
-            android:textColor="@color/colorAccent"
+            android:textColor="@color/PlayerNameColor"
             android:textSize="18sp"
+            android:textStyle="bold"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <TextView
-            android:id="@+id/vitoriasPlayer"
-            android:layout_width="100dp"
-            android:layout_height="25dp"
-            android:layout_marginStart="16dp"
-            android:text="@string/vitorias"
-            android:textColor="@color/colorAccent"
-            android:textSize="18sp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/nomeplayer" />
-
-        <TextView
-            android:id="@+id/derrotasPlayer"
-            android:layout_width="100dp"
-            android:layout_height="25dp"
-            android:layout_marginStart="50dp"
-            android:layout_marginTop="25dp"
-            android:layout_marginEnd="8dp"
-            android:text="@string/derrotas"
-            android:textColor="@color/colorAccent"
-            android:textSize="18sp"
-            app:layout_constraintEnd_toStartOf="@+id/imagemDeck"
-            app:layout_constraintStart_toEndOf="@+id/vitoriasPlayer"
             app:layout_constraintTop_toTopOf="parent" />
 
         <ImageView
