@@ -1,16 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="horizontal">
-
-    <android.support.constraint.ConstraintLayout
-        android:id="@+id/layoutLista"
-        android:layout_width="match_parent"
-        android:layout_height="55dp"
-        android:background="@drawable/shape_menus">
+    android:layout_height="55dp"
+    android:orientation="horizontal"
+    android:background="@drawable/shape_deck_list">
 
         <TextView
             android:id="@+id/nomeplayer"
@@ -36,6 +31,4 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
-    </android.support.constraint.ConstraintLayout>
-
-</LinearLayout>
+</android.support.constraint.ConstraintLayout>

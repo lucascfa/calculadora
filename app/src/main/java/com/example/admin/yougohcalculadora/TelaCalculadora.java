@@ -29,7 +29,7 @@ public class TelaCalculadora extends AppCompatActivity {
     private static final int UI_ANIMATION_DELAY = 30;
     private final Handler mHideHandler = new Handler();
     Button botao0, botao1, botao2, botao3, botao4, botao5, botao6, botao7, botao8, botao9, botao500, botao1000;
-    Button deletar, botaoSomar, botaoSubtrair, botaoResultado1, botaoResultado2, botaoOkay, botaoCancelar;
+    Button deletar, botaoSomar, botaoSubtrair, botaoResultado1, botaoResultado2, botaoOkay, botaoCancelarCriar;
 
     //String para delete e altera nome
     String delete, alteraNome;
@@ -87,7 +87,6 @@ public class TelaCalculadora extends AppCompatActivity {
         public boolean onLongClick(View view) {
             if (menu.getVisibility() == View.INVISIBLE) {
                 menu.setVisibility(View.VISIBLE);
-
             } else {
                 menu.setVisibility(View.INVISIBLE);
             }
@@ -125,7 +124,7 @@ public class TelaCalculadora extends AppCompatActivity {
         botaoResultado2 = findViewById(R.id.idResultado2);
         botaoAddPlayer  = findViewById(R.id.criar_player);
         //botaoOkay = findViewById(R.id.botaoOkay);
-        // botaoCancelar = findViewById(R.id.botaoCancelar);
+        botaoCancelarCriar = findViewById(R.id.botaoCancelarCriar);
 
         //instanciaçao dos botoes dos players
 
@@ -165,11 +164,6 @@ public class TelaCalculadora extends AppCompatActivity {
         optionsID = findViewById(R.id.optionsId);
         layoutGeral.setOnLongClickListener(Options);
         //editarNomePlayer = findViewById(R.id.EditNomePlayer);
-
-        duelista1 = new Duelista();
-        duelista2 = new Duelista();
-        duelista4 = new Duelista();
-        duelista3 = new Duelista();
 
         //ArrayList Duelista
         listaDuelista = new ArrayList<>();
@@ -495,7 +489,10 @@ public class TelaCalculadora extends AppCompatActivity {
                     menu.removeAllViews();
                     menu.setVisibility(View.INVISIBLE);
                 }
-
+                break;
+            case R.id.botaoCancelarCriar:
+                    menu.setVisibility(View.INVISIBLE);
+                break;
             default:
         }
     }
@@ -506,12 +503,20 @@ public class TelaCalculadora extends AppCompatActivity {
     }
 
     public void chamarTelaCriarPlayer(ConstraintLayout view) {
+        boolean selecionadoDeck = false;
         final View viewTeste = getLayoutInflater().inflate(R.layout.criar_player, view, false);
         ListView listaDeck =  viewTeste.findViewById(R.id.listaDecksEscolher);
         listarDecks(listaDeck);
         listaDeck.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                view.setFocusable(false);
+                view.setEnabled(true);
+            if (view.isEnabled() == true){
+                view.setEnabled(false);
+                view.setPressed(true);
+                   Toast.makeText(getApplicationContext(),"enable",Toast.LENGTH_LONG).show();
+            }
             }
         });
         menu.addView(viewTeste);
