@@ -1,6 +1,6 @@
 package com.example.admin.yougohcalculadora;
 
-import android.annotation.SuppressLint;
+
 import android.app.Activity;
 import android.view.View;
 import android.view.ViewGroup;
@@ -37,12 +37,18 @@ public class AdapterListaDecks extends BaseAdapter {
     public View getView(int i, View view, ViewGroup viewGroup) {
         View v = activity.getLayoutInflater().inflate(R.layout.listadeck_layout,viewGroup,false);
         Deck deck =  listaDeck.get(i);
-        TextView nome = view.findViewById(R.id.nome);
+        TextView nome = v.findViewById(R.id.nomeplayer);
         nome.setText(deck.getNome());
-
-        ImageView imagem =  view.findViewById(R.id.imagem);
-        imagem.setBackgroundResource(deck.getImagemDeck());
-
+        ImageView imagem = v.findViewById(R.id.imagemDeck);
+       if(deck.getImagemDeck() == 1){
+           imagem.setBackgroundResource(R.drawable.felgrand_deck);
+       }else if(deck.getImagemDeck() == 2){
+           imagem.setBackgroundResource(R.drawable.shiranui_deck);
+       } else if(deck.getImagemDeck() == 3){
+           imagem.setBackgroundResource(R.drawable.darklord_png);
+       } else if(deck.getImagemDeck() == 4 ){
+           imagem.setBackgroundResource(R.drawable.six_samurai_deck);
+       }
         return v;
     }
 }

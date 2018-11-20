@@ -4,4 +4,8 @@
     <string name="title_activity_modo_dg">ModoDg</string>
     <string name="lifepoint">8000</string>
     <string name="HP">8000</string>
+    <string name="vitorias">Vitórias</string>
+    <string name="derrotas">Derrotas</string>
+    <string name="cancelar">Cancelar</string>
+    <string name="criar">Criar</string>
 </resources>

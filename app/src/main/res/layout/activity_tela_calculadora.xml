@@ -13,7 +13,8 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@drawable/fundo_xyz"
-        android:visibility="visible">
+        android:visibility="visible"
+        android:onClick="click">
 
         <ImageView
             android:id="@+id/player1id"
@@ -21,8 +22,9 @@
             android:layout_height="100dp"
             android:layout_marginStart="-1dp"
             android:alpha="1"
-            android:background="@drawable/yugiinvertido"
+            android:background="@drawable/six_samurai_deck"
             android:backgroundTintMode="multiply"
+            android:onClick="click"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -32,8 +34,7 @@
             android:layout_height="93dp"
             android:layout_marginStart="28dp"
             android:layout_marginTop="56dp"
-            android:rotation="0"
-            android:saveEnabled="true"
+            android:onClick="click"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:srcCompat="@drawable/lifepoints2" />
@@ -48,6 +49,7 @@
             android:textColor="@color/hpcolor"
             android:textSize="20sp"
             android:textStyle="bold|italic"
+            android:onClick="click"
             app:layout_constraintStart_toStartOf="@+id/LPplayer1"
             app:layout_constraintTop_toTopOf="@+id/LPplayer1" />
 
@@ -61,6 +63,7 @@
             android:textColor="@color/PlayerNameColor"
             android:textSize="16sp"
             android:textStyle="bold"
+            android:onClick="click"
             app:layout_constraintStart_toStartOf="@+id/LPplayer1"
             app:layout_constraintTop_toTopOf="@+id/LPplayer1" />
 
@@ -73,6 +76,7 @@
             android:textColor="@color/hpcolor"
             android:textSize="10sp"
             android:textStyle="bold|italic"
+            android:onClick="click"
             app:layout_constraintEnd_toStartOf="@+id/lifePointsP1"
             app:layout_constraintTop_toBottomOf="@+id/nameP1" />
 
@@ -81,7 +85,8 @@
             android:layout_width="100dp"
             android:layout_height="100dp"
             android:alpha="1"
-            android:background="@drawable/yugiinvertido"
+            android:background="@drawable/felgrand_deck"
+            android:onClick="click"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent" />
 
@@ -91,8 +96,7 @@
             android:layout_height="93dp"
             android:layout_marginStart="28dp"
             android:layout_marginBottom="56dp"
-            android:rotation="0"
-            android:saveEnabled="true"
+            android:onClick="click"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:srcCompat="@drawable/lifepoints2" />
@@ -107,6 +111,7 @@
             android:textColor="@color/hpcolor"
             android:textSize="20sp"
             android:textStyle="bold|italic"
+            android:onClick="click"
             app:layout_constraintStart_toStartOf="@+id/LPplayer3"
             app:layout_constraintTop_toTopOf="@+id/LPplayer3" />
 
@@ -120,6 +125,7 @@
             android:textColor="@color/PlayerNameColor"
             android:textSize="16sp"
             android:textStyle="bold"
+            android:onClick="click"
             app:layout_constraintStart_toStartOf="@+id/LPplayer3"
             app:layout_constraintTop_toTopOf="@+id/LPplayer3" />
 
@@ -132,6 +138,7 @@
             android:textColor="@color/hpcolor"
             android:textSize="10sp"
             android:textStyle="bold|italic"
+            android:onClick="click"
             app:layout_constraintEnd_toStartOf="@+id/lifePointsP3"
             app:layout_constraintTop_toBottomOf="@+id/nameP3" />
 
@@ -140,9 +147,10 @@
             android:layout_width="100dp"
             android:layout_height="100dp"
             android:alpha="1"
+            android:onClick="click"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@drawable/renomeadsdasdo" />
+            app:srcCompat="@drawable/shiranui_deck" />
 
         <ImageView
             android:id="@+id/LPplayer2"
@@ -150,8 +158,7 @@
             android:layout_height="93dp"
             android:layout_marginTop="56dp"
             android:layout_marginEnd="28dp"
-            android:rotation="0"
-            android:saveEnabled="true"
+            android:onClick="click"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:srcCompat="@drawable/lifepoints2_invertido" />
@@ -166,6 +173,7 @@
             android:textColor="@color/hpcolor"
             android:textSize="20sp"
             android:textStyle="bold|italic"
+            android:onClick="click"
             app:layout_constraintEnd_toEndOf="@+id/LPplayer2"
             app:layout_constraintTop_toTopOf="@+id/LPplayer2" />
 
@@ -179,6 +187,7 @@
             android:textColor="@color/PlayerNameColor"
             android:textSize="16sp"
             android:textStyle="bold"
+            android:onClick="click"
             app:layout_constraintEnd_toEndOf="@+id/LPplayer2"
             app:layout_constraintTop_toTopOf="@+id/LPplayer2" />
 
@@ -191,6 +200,7 @@
             android:textColor="@color/hpcolor"
             android:textSize="10sp"
             android:textStyle="bold|italic"
+            android:onClick="click"
             app:layout_constraintEnd_toStartOf="@+id/lifePointsP2"
             app:layout_constraintTop_toBottomOf="@+id/nameP2" />
 
@@ -199,7 +209,8 @@
             android:layout_width="100dp"
             android:layout_height="100dp"
             android:alpha="1"
-            android:background="@drawable/renomeadsdasdo"
+            android:background="@drawable/darklord_png"
+            android:onClick="click"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent" />
 
@@ -209,8 +220,7 @@
             android:layout_height="93dp"
             android:layout_marginEnd="28dp"
             android:layout_marginBottom="56dp"
-            android:rotation="0"
-            android:saveEnabled="true"
+            android:onClick="click"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:srcCompat="@drawable/lifepoints2_invertido" />
@@ -225,6 +235,7 @@
             android:textColor="@color/hpcolor"
             android:textSize="20sp"
             android:textStyle="bold|italic"
+            android:onClick="click"
             app:layout_constraintEnd_toEndOf="@+id/LPplayer4"
             app:layout_constraintTop_toTopOf="@+id/LPplayer4" />
 
@@ -238,6 +249,7 @@
             android:textColor="@color/PlayerNameColor"
             android:textSize="16sp"
             android:textStyle="bold"
+            android:onClick="click"
             app:layout_constraintEnd_toEndOf="@+id/LPplayer4"
             app:layout_constraintTop_toTopOf="@+id/LPplayer4" />
 
@@ -250,16 +262,18 @@
             android:textColor="@color/hpcolor"
             android:textSize="10sp"
             android:textStyle="bold|italic"
+            android:onClick="click"
             app:layout_constraintEnd_toStartOf="@+id/lifePointsP4"
             app:layout_constraintTop_toBottomOf="@+id/nameP4" />
 
         <android.support.constraint.ConstraintLayout
             android:id="@+id/layoutCalculadoraId"
-            android:layout_width="360dp"
-            android:layout_height="370dp"
-            android:layout_marginStart="8dp"
+            android:layout_width="364dp"
+            android:layout_height="372dp"
+            android:layout_marginStart="14dp"
             android:layout_marginTop="20dp"
             android:layout_marginEnd="8dp"
+            android:visibility="visible"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.498"
             app:layout_constraintStart_toStartOf="parent"
@@ -272,6 +286,7 @@
                 android:layout_marginStart="14dp"
                 android:layout_marginTop="44dp"
                 android:background="#6C10A7"
+                android:onClick="click"
                 android:text="-"
                 android:textColor="@android:color/background_light"
                 android:textSize="30sp"
@@ -285,6 +300,7 @@
                 android:layout_marginStart="76dp"
                 android:layout_marginTop="44dp"
                 android:background="@color/black_overlay"
+                android:onClick="click"
                 android:text="1"
                 android:textColor="@android:color/background_light"
                 android:textSize="18sp"
@@ -298,6 +314,7 @@
                 android:layout_marginStart="2dp"
                 android:layout_marginTop="44dp"
                 android:background="@color/black_overlay"
+                android:onClick="click"
                 android:text="2"
                 android:textColor="@android:color/background_light"
                 android:textSize="18sp"
@@ -311,6 +328,7 @@
                 android:layout_marginStart="2dp"
                 android:layout_marginTop="44dp"
                 android:background="@color/black_overlay"
+                android:onClick="click"
                 android:text="3"
                 android:textColor="@android:color/background_light"
                 android:textSize="18sp"
@@ -324,6 +342,7 @@
                 android:layout_marginStart="76dp"
                 android:layout_marginTop="2dp"
                 android:background="@color/black_overlay"
+                android:onClick="click"
                 android:text="4"
                 android:textColor="@android:color/background_light"
                 android:textSize="18sp"
@@ -337,6 +356,7 @@
                 android:layout_marginStart="2dp"
                 android:layout_marginTop="2dp"
                 android:background="@color/black_overlay"
+                android:onClick="click"
                 android:text="5"
                 android:textColor="@android:color/background_light"
                 android:textSize="18sp"
@@ -350,6 +370,7 @@
                 android:layout_marginStart="2dp"
                 android:layout_marginTop="2dp"
                 android:background="@color/black_overlay"
+                android:onClick="click"
                 android:text="6"
                 android:textColor="@android:color/background_light"
                 android:textSize="18sp"
@@ -363,6 +384,7 @@
                 android:layout_marginStart="76dp"
                 android:layout_marginTop="2dp"
                 android:background="@color/black_overlay"
+                android:onClick="click"
                 android:text="7"
                 android:textColor="@android:color/background_light"
                 android:textSize="18sp"
@@ -376,6 +398,7 @@
                 android:layout_marginStart="2dp"
                 android:layout_marginTop="2dp"
                 android:background="@color/black_overlay"
+                android:onClick="click"
                 android:text="8"
                 android:textColor="@android:color/background_light"
                 android:textSize="18sp"
@@ -389,6 +412,7 @@
                 android:layout_marginStart="2dp"
                 android:layout_marginTop="2dp"
                 android:background="@color/black_overlay"
+                android:onClick="click"
                 android:text="9"
                 android:textColor="@android:color/background_light"
                 android:textSize="18sp"
@@ -403,6 +427,7 @@
                 android:layout_marginTop="2dp"
                 android:layout_marginEnd="2dp"
                 android:background="@color/colorPrimary"
+                android:onClick="click"
                 android:text="1000"
                 android:textColor="@android:color/background_light"
                 app:layout_constraintEnd_toStartOf="@+id/botao0"
@@ -414,13 +439,14 @@
                 android:id="@+id/botaoSomar"
                 android:layout_width="60dp"
                 android:layout_height="110dp"
+                android:layout_marginStart="2dp"
                 android:layout_marginTop="44dp"
-                android:layout_marginEnd="13dp"
                 android:background="#3D0561"
+                android:onClick="click"
                 android:text="+"
                 android:textColor="@android:color/background_light"
                 android:textSize="30sp"
-                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/botao3id"
                 app:layout_constraintTop_toTopOf="parent" />
 
             <Button
@@ -431,6 +457,7 @@
                 android:layout_marginTop="2dp"
                 android:layout_marginEnd="8dp"
                 android:background="@color/black_overlay"
+                android:onClick="click"
                 android:text="0"
                 android:textColor="@android:color/background_light"
                 android:textSize="18sp"
@@ -444,8 +471,9 @@
                 android:layout_height="60dp"
                 android:layout_marginStart="2dp"
                 android:layout_marginTop="2dp"
-                android:layout_marginEnd="8dp"
+                android:layout_marginEnd="4dp"
                 android:background="@color/colorPrimary"
+                android:onClick="click"
                 android:text="500"
                 android:textColor="@android:color/background_light"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -457,10 +485,11 @@
                 android:id="@+id/visorId"
                 android:layout_width="208dp"
                 android:layout_height="36dp"
-                android:layout_marginStart="8dp"
+                android:layout_marginStart="76dp"
                 android:layout_marginTop="4dp"
-                android:layout_marginEnd="8dp"
-                android:background="@drawable/shape_menus"
+                android:layout_marginEnd="80dp"
+                android:background="@drawable/shape_deck_list"
+                android:onClick="click"
                 android:paddingStart="5dp"
                 android:paddingRight="5dp"
                 android:textColor="@color/hpcolor"
@@ -474,17 +503,15 @@
                 android:id="@+id/deleteButton"
                 android:layout_width="60dp"
                 android:layout_height="36dp"
-                android:layout_marginStart="8dp"
+                android:layout_marginStart="2dp"
                 android:layout_marginTop="4dp"
-                android:layout_marginEnd="8dp"
                 android:background="@color/colorPrimaryDark"
+                android:onClick="click"
                 android:text="Apagar"
                 android:textColor="@android:color/background_light"
                 android:textSize="10sp"
                 android:textStyle="bold"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.982"
-                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/visorId"
                 app:layout_constraintTop_toTopOf="parent" />
 
             <Button
@@ -494,6 +521,7 @@
                 android:layout_marginTop="2dp"
                 android:layout_marginEnd="2dp"
                 android:background="#9651C2"
+                android:onClick="click"
                 android:text="="
                 android:textSize="30sp"
                 android:textStyle="bold"
@@ -507,6 +535,7 @@
                 android:layout_marginStart="2dp"
                 android:layout_marginTop="2dp"
                 android:background="#9651C2"
+                android:onClick="click"
                 android:text="="
                 android:textSize="30sp"
                 android:textStyle="bold"
@@ -517,102 +546,50 @@
 
         <android.support.constraint.ConstraintLayout
             android:id="@+id/menuId"
-            android:layout_width="275dp"
-            android:layout_height="199dp"
-            android:layout_marginStart="160dp"
-            android:layout_marginEnd="160dp"
-            android:layout_marginBottom="118dp"
+            android:layout_width="338dp"
+            android:layout_height="330dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginEnd="8dp"
             android:alpha="1"
-            android:background="@drawable/shape_menus"
+            android:background="@drawable/shape_deck_list"
             android:focusableInTouchMode="false"
+            android:onClick="click"
             android:touchscreenBlocksFocus="false"
-            android:visibility="visible"
-            app:layout_constraintBottom_toBottomOf="@+id/layoutCalculadoraId"
+            android:visibility="invisible"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent">
-
-            <Button
-                android:id="@+id/botaoOkay"
-                android:layout_width="100dp"
-                android:layout_height="45dp"
-                android:layout_marginStart="8dp"
-                android:layout_marginTop="68dp"
-                android:layout_marginEnd="8dp"
-                android:layout_marginBottom="8dp"
-                android:text="Ok"
-                android:visibility="visible"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.106"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="1.0" />
-
-            <Button
-                android:id="@+id/botaoCancelar"
-                android:layout_width="100dp"
-                android:layout_height="45dp"
-                android:layout_marginStart="8dp"
-                android:layout_marginTop="68dp"
-                android:layout_marginEnd="8dp"
-                android:layout_marginBottom="7dp"
-                android:text="Cancelar"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/botaoOkay"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="1.0" />
-
-            <EditText
-                android:id="@+id/EditNomePlayer"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="28dp"
-                android:layout_marginTop="32dp"
-                android:layout_marginEnd="8dp"
-                android:ems="10"
-                android:hint="Digite o nome"
-                android:inputType="textPersonName"
-                android:textColor="@color/PlayerNameColor"
-                android:textColorHint="@color/colorAccent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.083"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
-
-            <ListView
-                android:id="@+id/listaDeck"
-                android:layout_width="259dp"
-                android:layout_height="53dp"
-                android:layout_marginStart="8dp"
-                android:layout_marginTop="8dp"
-                android:layout_marginEnd="8dp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/EditNomePlayer" />
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
 
         </android.support.constraint.ConstraintLayout>
 
         <android.support.constraint.ConstraintLayout
             android:id="@+id/optionsId"
-            android:layout_width="147dp"
+            android:layout_width="80dp"
             android:layout_height="70dp"
+            android:layout_marginStart="77dp"
             android:layout_marginTop="135dp"
             android:layout_marginBottom="135dp"
-            android:background="@drawable/shape_menus"
+            android:background="@drawable/shape_deck_list"
             android:visibility="visible"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/layoutCalculadoraId"
             app:layout_constraintTop_toTopOf="parent">
 
             <ImageView
                 android:id="@+id/animacao_dado"
                 android:layout_width="60dp"
                 android:layout_height="60dp"
-                android:layout_marginStart="68dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="4dp"
+                android:layout_marginEnd="5dp"
                 android:adjustViewBounds="true"
                 android:background="@drawable/animacao_dado1"
+                android:onClick="click"
                 android:visibility="visible"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="1.0"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
@@ -620,25 +597,38 @@
 
         <android.support.constraint.ConstraintLayout
             android:id="@+id/optionsPlayer"
-            android:layout_width="147dp"
+            android:layout_width="126dp"
             android:layout_height="70dp"
             android:layout_marginTop="135dp"
             android:layout_marginBottom="135dp"
-            android:background="@drawable/shape_menus_player"
+            android:background="@drawable/shape_deck_selecionado"
             android:visibility="visible"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.489">
 
             <ImageView
                 android:id="@+id/recompor"
-                android:layout_width="30dp"
-                android:layout_height="40dp"
-                android:layout_marginStart="16dp"
+                android:layout_width="35dp"
+                android:layout_height="35dp"
+                android:layout_marginStart="18dp"
                 android:layout_marginTop="16dp"
+                android:onClick="click"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:srcCompat="@drawable/images" />
+                app:srcCompat="@drawable/restart_icon" />
+
+            <ImageView
+                android:id="@+id/criar_player"
+                android:layout_width="35dp"
+                android:layout_height="35dp"
+                android:layout_marginStart="18dp"
+                android:layout_marginTop="16dp"
+                android:onClick="click"
+                app:layout_constraintStart_toEndOf="@+id/recompor"
+                app:layout_constraintTop_toTopOf="parent"
+                app:srcCompat="@drawable/criar_player" />
         </android.support.constraint.ConstraintLayout>
 
     </android.support.constraint.ConstraintLayout>

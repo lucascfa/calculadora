@@ -13,11 +13,13 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import java.lang.String;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Random;
 
 
@@ -57,7 +59,7 @@ public class TelaCalculadora extends AppCompatActivity {
     View animacao_dado;
 
     //Layout de menu e Layout Geral;
-    View menu, layoutGeral, optionsID;
+    View menu, layoutGeral, optionsID, menuplayers;
     //visibilidade do menu;
     int resultado;
     // string para tamanho do lp
@@ -66,6 +68,8 @@ public class TelaCalculadora extends AppCompatActivity {
     EditText editarNomePlayer;
     //Array de duelista
     ArrayList<Duelista> listaDuelista;    ArrayList<ImageView> listaDeImagem;    ArrayList<TextView> listaDeHps;
+    List<ImageView> listaImagensDeck;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -77,6 +81,7 @@ public class TelaCalculadora extends AppCompatActivity {
 
         apresentaOptions = findViewById(R.id.layoutId);
         layoutGeral = findViewById(R.id.layoutGeralId);
+        menuplayers = findViewById(R.id.optionsPlayer);
 
         botao0 = findViewById(R.id.botao0);        botao1 = findViewById(R.id.botao1id);
         botao2 = findViewById(R.id.botao2id);        botao3 = findViewById(R.id.botao3id);
@@ -90,7 +95,6 @@ public class TelaCalculadora extends AppCompatActivity {
         botaoResultado2 = findViewById(R.id.idResultado2);
         botaoOkay = findViewById(R.id.botaoOkay);
         botaoCancelar = findViewById(R.id.botaoCancelar);
-
 
         // setando os clicks
 
@@ -136,6 +140,7 @@ public class TelaCalculadora extends AppCompatActivity {
         recomporLP.setOnClickListener(clickBotao);
         animacao_dado.setOnClickListener(clickBotao);
 
+        // renova a lista
         duelista1 = new Duelista();        duelista2 = new Duelista();
         duelista3 = new Duelista();        duelista4 = new Duelista();
         //layoutGeral.setOnLongClickListener(clickLongo);
@@ -158,8 +163,8 @@ public class TelaCalculadora extends AppCompatActivity {
         //adicionar os lps dos players em uma arraylist;
         listaDeHps = new ArrayList<>();
         listaDeHps.add(LPplayer1);        listaDeHps.add(LPplayer2);
-        listaDeHps.add(LPplayer3);        listaDeHps.add(LPplayer4);Outr
-        //instancia o banco de dados;
+        listaDeHps.add(LPplayer3);        listaDeHps.add(LPplayer4);
+
         bancoDuelista = openOrCreateDatabase("BancoDuelista",MODE_PRIVATE, null);
         //criar as tabelas
         bancoDuelista.execSQL("CREATE TABLE IF NOT EXISTS duelista(id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, nome VARCHAR NOT NULL , vitorias INTEGER NOT NULL, derrotas INTEGER NOT NULL, imagem BLOB)");
@@ -170,8 +175,10 @@ public class TelaCalculadora extends AppCompatActivity {
         public boolean onLongClick(View view) {
             if (optionsID.getVisibility() == View.INVISIBLE) {
                 optionsID.setVisibility(View.VISIBLE);
+                menuplayers.setVisibility(View.VISIBLE);
             } else {
                 optionsID.setVisibility(View.INVISIBLE);
+                menuplayers.setVisibility(View.INVISIBLE);
             }
             return false;
         }
@@ -181,6 +188,7 @@ public class TelaCalculadora extends AppCompatActivity {
         public boolean onLongClick(View view) {
             if (menu.getVisibility() == View.INVISIBLE) {
                 menu.setVisibility(View.VISIBLE);
+
             } else {
                 menu.setVisibility(View.INVISIBLE);
             }
@@ -491,19 +499,5 @@ public class TelaCalculadora extends AppCompatActivity {
     public void apertaNumero(Button botao, TextView lifePoint){
         lifePoint.setText(lifePoint.getText() + botao.getText().toString());
         operadorAtivo = false;
-    }
-    public void criarDuelista(Duelista duelista){
-       bancoDuelista.execSQL("INSERT INTO duelista(nome,vitorias,derrotas,imagem) VALUES ('" + duelista.getNome()
-               +"','" +duelista.getVitorias() + "','" + duelista.getDerrotas() + ")");
-    }
-    public void removerDuelista(){
-
-    }
-    public void selecionarDuelista(){
-
-    }public void atualizarDuelista(){
-
-    }public void listarDuelistas(){
-
     }
 }
