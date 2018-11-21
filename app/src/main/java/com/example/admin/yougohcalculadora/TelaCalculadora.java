@@ -503,7 +503,6 @@ public class TelaCalculadora extends AppCompatActivity {
     }
 
     public void chamarTelaCriarPlayer(ConstraintLayout view) {
-        boolean selecionadoDeck = false;
         final View viewTeste = getLayoutInflater().inflate(R.layout.criar_player, view, false);
         ListView listaDeck =  viewTeste.findViewById(R.id.listaDecksEscolher);
         listarDecks(listaDeck);
