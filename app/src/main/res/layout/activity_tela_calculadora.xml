@@ -13,8 +13,8 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@drawable/fundo_xyz"
-        android:visibility="visible"
-        android:onClick="click">
+        android:onClick="click"
+        android:visibility="visible">
 
         <ImageView
             android:id="@+id/player1id"
@@ -45,11 +45,11 @@
             android:layout_height="26dp"
             android:layout_marginStart="30dp"
             android:layout_marginTop="42dp"
+            android:onClick="click"
             android:text="@string/lifepoint"
             android:textColor="@color/hpcolor"
             android:textSize="20sp"
             android:textStyle="bold|italic"
-            android:onClick="click"
             app:layout_constraintStart_toStartOf="@+id/LPplayer1"
             app:layout_constraintTop_toTopOf="@+id/LPplayer1" />
 
@@ -59,11 +59,11 @@
             android:layout_height="22dp"
             android:layout_marginStart="18dp"
             android:layout_marginTop="23dp"
+            android:onClick="click"
             android:text="Player1"
             android:textColor="@color/PlayerNameColor"
             android:textSize="16sp"
             android:textStyle="bold"
-            android:onClick="click"
             app:layout_constraintStart_toStartOf="@+id/LPplayer1"
             app:layout_constraintTop_toTopOf="@+id/LPplayer1" />
 
@@ -72,11 +72,11 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginEnd="4dp"
+            android:onClick="click"
             android:text="LP"
             android:textColor="@color/hpcolor"
             android:textSize="10sp"
             android:textStyle="bold|italic"
-            android:onClick="click"
             app:layout_constraintEnd_toStartOf="@+id/lifePointsP1"
             app:layout_constraintTop_toBottomOf="@+id/nameP1" />
 
@@ -107,11 +107,11 @@
             android:layout_height="26dp"
             android:layout_marginStart="30dp"
             android:layout_marginTop="42dp"
+            android:onClick="click"
             android:text="@string/lifepoint"
             android:textColor="@color/hpcolor"
             android:textSize="20sp"
             android:textStyle="bold|italic"
-            android:onClick="click"
             app:layout_constraintStart_toStartOf="@+id/LPplayer3"
             app:layout_constraintTop_toTopOf="@+id/LPplayer3" />
 
@@ -121,11 +121,11 @@
             android:layout_height="22dp"
             android:layout_marginStart="18dp"
             android:layout_marginTop="23dp"
+            android:onClick="click"
             android:text="Player3"
             android:textColor="@color/PlayerNameColor"
             android:textSize="16sp"
             android:textStyle="bold"
-            android:onClick="click"
             app:layout_constraintStart_toStartOf="@+id/LPplayer3"
             app:layout_constraintTop_toTopOf="@+id/LPplayer3" />
 
@@ -134,11 +134,11 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginEnd="4dp"
+            android:onClick="click"
             android:text="LP"
             android:textColor="@color/hpcolor"
             android:textSize="10sp"
             android:textStyle="bold|italic"
-            android:onClick="click"
             app:layout_constraintEnd_toStartOf="@+id/lifePointsP3"
             app:layout_constraintTop_toBottomOf="@+id/nameP3" />
 
@@ -169,11 +169,11 @@
             android:layout_height="26dp"
             android:layout_marginTop="42dp"
             android:layout_marginEnd="13dp"
+            android:onClick="click"
             android:text="@string/lifepoint"
             android:textColor="@color/hpcolor"
             android:textSize="20sp"
             android:textStyle="bold|italic"
-            android:onClick="click"
             app:layout_constraintEnd_toEndOf="@+id/LPplayer2"
             app:layout_constraintTop_toTopOf="@+id/LPplayer2" />
 
@@ -183,11 +183,11 @@
             android:layout_height="22dp"
             android:layout_marginTop="23dp"
             android:layout_marginEnd="20dp"
+            android:onClick="click"
             android:text="Player2"
             android:textColor="@color/PlayerNameColor"
             android:textSize="16sp"
             android:textStyle="bold"
-            android:onClick="click"
             app:layout_constraintEnd_toEndOf="@+id/LPplayer2"
             app:layout_constraintTop_toTopOf="@+id/LPplayer2" />
 
@@ -196,11 +196,11 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginEnd="4dp"
+            android:onClick="click"
             android:text="LP"
             android:textColor="@color/hpcolor"
             android:textSize="10sp"
             android:textStyle="bold|italic"
-            android:onClick="click"
             app:layout_constraintEnd_toStartOf="@+id/lifePointsP2"
             app:layout_constraintTop_toBottomOf="@+id/nameP2" />
 
@@ -231,11 +231,11 @@
             android:layout_height="26dp"
             android:layout_marginTop="42dp"
             android:layout_marginEnd="13dp"
+            android:onClick="click"
             android:text="@string/lifepoint"
             android:textColor="@color/hpcolor"
             android:textSize="20sp"
             android:textStyle="bold|italic"
-            android:onClick="click"
             app:layout_constraintEnd_toEndOf="@+id/LPplayer4"
             app:layout_constraintTop_toTopOf="@+id/LPplayer4" />
 
@@ -245,11 +245,11 @@
             android:layout_height="22dp"
             android:layout_marginTop="23dp"
             android:layout_marginEnd="20dp"
+            android:onClick="click"
             android:text="Player4"
             android:textColor="@color/PlayerNameColor"
             android:textSize="16sp"
             android:textStyle="bold"
-            android:onClick="click"
             app:layout_constraintEnd_toEndOf="@+id/LPplayer4"
             app:layout_constraintTop_toTopOf="@+id/LPplayer4" />
 
@@ -258,11 +258,11 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginEnd="4dp"
+            android:onClick="click"
             android:text="LP"
             android:textColor="@color/hpcolor"
             android:textSize="10sp"
             android:textStyle="bold|italic"
-            android:onClick="click"
             app:layout_constraintEnd_toStartOf="@+id/lifePointsP4"
             app:layout_constraintTop_toBottomOf="@+id/nameP4" />
 
