@@ -3,14 +3,22 @@ package com.example.admin.yougohcalculadora;
 import android.widget.ImageView;
 
 public class Duelista {
+    private int id;
     private String nome = "Duelista";
-    private String deck;
+    private int deck;
     private String lifepoint = "8000";
     private int vitorias = 0;
     private int derrotas = 0;
-    private ImageView imagem;
 
     private boolean ativo = false;
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
 
     public String getNome() {
         return nome;
@@ -20,11 +28,11 @@ public class Duelista {
         this.nome = nome;
     }
 
-    public String getDeck() {
+    public int getDeck() {
         return deck;
     }
 
-    public void setDeck(String deck) {
+    public void setDeck(int deck) {
         this.deck = deck;
     }
 
@@ -63,12 +71,5 @@ public class Duelista {
 
     public void setDerrotas(int derrotas) {
         this.derrotas = derrotas;
-    }
-    public ImageView getImagem() {
-        return imagem;
-    }
-
-    public void setImagem(ImageView imagem) {
-        this.imagem = imagem;
     }
 }

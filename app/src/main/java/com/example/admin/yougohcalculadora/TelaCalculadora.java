@@ -19,6 +19,8 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.admin.yougohcalculadora.DAO.DuelistaDAO;
+
 import java.lang.String;
 import java.util.ArrayList;
 import java.util.List;
@@ -30,6 +32,7 @@ public class TelaCalculadora extends AppCompatActivity {
     private final Handler mHideHandler = new Handler();
     Button botao0, botao1, botao2, botao3, botao4, botao5, botao6, botao7, botao8, botao9, botao500, botao1000;
     Button deletar, botaoSomar, botaoSubtrair, botaoResultado1, botaoResultado2, botaoOkay, botaoCancelarCriar;
+    DuelistaDAO dao;
 
     //String para delete e altera nome
     String delete, alteraNome;
@@ -100,8 +103,6 @@ public class TelaCalculadora extends AppCompatActivity {
 
         setContentView(R.layout.activity_tela_calculadora);
 
-        // editarNomePlayer = findViewById(R.id.EditNomePlayer);
-
         apresentaOptions = findViewById(R.id.layoutId);
         layoutGeral = findViewById(R.id.layoutGeralId);
         menuplayers = findViewById(R.id.optionsPlayer);
@@ -123,8 +124,8 @@ public class TelaCalculadora extends AppCompatActivity {
         botaoResultado1 = findViewById(R.id.idResultado1);
         botaoResultado2 = findViewById(R.id.idResultado2);
         botaoAddPlayer  = findViewById(R.id.criar_player);
-        //botaoOkay = findViewById(R.id.botaoOkay);
         botaoCancelarCriar = findViewById(R.id.botaoCancelarCriar);
+        editarNomePlayer = findViewById(R.id.editNomeDuelista);
 
         //instanciaçao dos botoes dos players
 
@@ -201,10 +202,7 @@ public class TelaCalculadora extends AppCompatActivity {
         deckSixSamurai.setImagemDeck(4);
         deckSixSamurai.setNome("Six Samurai");
         listaImagensDeck.add(deckSixSamurai);
-
-
     }
-
     private void hide() {
         ActionBar actionBar = getSupportActionBar();
         if (actionBar != null) {
@@ -493,15 +491,22 @@ public class TelaCalculadora extends AppCompatActivity {
             case R.id.botaoCancelarCriar:
                     menu.setVisibility(View.INVISIBLE);
                 break;
+            case R.id.criar_botao_player:
+                String nomeDuelista = editarNomePlayer.getText().toString();
+                if (nomeDuelista == ""){
+                    Toast.makeText(this, "Digite o nome do duelista", Toast.LENGTH_SHORT).show();
+                }else{
+                  //  criarDuelista(nomeDuelista);
+                }
+
+                break;
             default:
         }
     }
 
     public void listarDecks (ListView lista){
-        AdapterListaDecks adaptador = new AdapterListaDecks(this, listaImagensDeck);
-            lista.setAdapter(adaptador);
+        AdapterListaDuelista adaptador = new AdapterListaDuelista(listaDecks);
     }
-
     public void chamarTelaCriarPlayer(ConstraintLayout view) {
         boolean selecionadoDeck = false;
         final View viewTeste = getLayoutInflater().inflate(R.layout.criar_player, view, false);
@@ -521,4 +526,15 @@ public class TelaCalculadora extends AppCompatActivity {
         });
         menu.addView(viewTeste);
     }
+
+    public void criarDuelista( String nome, int deck){
+        Duelista duel = new Duelista();
+        duel.setNome(nome);
+        duel.setDeck(deck);
+        dao = new DuelistaDAO(getApplicationContext());
+        if(dao.insere(duel) > 0){
+            Toast.makeText(this,"Duelista criado com sucesso", Toast.LENGTH_SHORT).show();
+        }
+    }
+
 }

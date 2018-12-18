@@ -7,7 +7,7 @@
     android:layout_height="330dp">
 
     <Button
-        android:id="@+id/criar_botao"
+        android:id="@+id/criar_botao_player"
         style="@style/Widget.AppCompat.Button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -48,7 +48,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/listaDecksEscolher" />
 
-    <ListView
+    <android.support.v7.widget.RecyclerView
         android:id="@+id/listaDecksEscolher"
         android:layout_width="271dp"
         android:layout_height="155dp"

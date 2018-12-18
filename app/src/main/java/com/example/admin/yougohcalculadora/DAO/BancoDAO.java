@@ -9,7 +9,7 @@ public class BancoDAO extends SQLiteOpenHelper {
     private static final String NOMEBANCO = "Duelista";
     private static final int VERSAOBANCO = 1;
     private static final String TABLEDUELISTA = "CREATE TABLE Duelista (id INTEGER PRIMARY KEY,"+
-            "nome TEXT,deck INTEGER, vitorias INTEGER, derrotas INTEGER);";
+            "nome TEXT,deck INTEGER, vitorias INTEGER, derrotas INTEGER, deck INTEGER);";
     public BancoDAO(Context context) {
         super(context, NOMEBANCO, null, VERSAOBANCO);
     }
