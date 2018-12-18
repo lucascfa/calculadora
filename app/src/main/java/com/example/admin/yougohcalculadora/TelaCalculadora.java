@@ -10,6 +10,7 @@ import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.os.Handler;
+import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
@@ -56,7 +57,7 @@ public class TelaCalculadora extends AppCompatActivity {
     ArrayList<ImageView> listaDeImagem;
     ArrayList<TextView> listaDeHps;
 
-    ListView listaDecks;
+    List<Deck> listaDecks;
     List<Deck> listaImagensDeck;
 
     private SQLiteDatabase bancoDuelista;
@@ -96,59 +97,14 @@ public class TelaCalculadora extends AppCompatActivity {
             return false;
         }
     };
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
         setContentView(R.layout.activity_tela_calculadora);
+        //seta o find view by id para os botões.
+        setaBotoes();
 
-        apresentaOptions = findViewById(R.id.layoutId);
-        layoutGeral = findViewById(R.id.layoutGeralId);
-        menuplayers = findViewById(R.id.optionsPlayer);
-        botao0 = findViewById(R.id.botao0);
-        botao1 = findViewById(R.id.botao1id);
-        botao2 = findViewById(R.id.botao2id);
-        botao3 = findViewById(R.id.botao3id);
-        botao4 = findViewById(R.id.botao4id);
-        botao5 = findViewById(R.id.botao5id);
-        botao6 = findViewById(R.id.botao6id);
-        botao7 = findViewById(R.id.botao7id);
-        botao8 = findViewById(R.id.botao8id);
-        botao9 = findViewById(R.id.botao9id);
-        botao500 = findViewById(R.id.botao500id);
-        botao1000 = findViewById(R.id.botao1000id);
-        botaoSomar = findViewById(R.id.botaoSomar);
-        botaoSubtrair = findViewById(R.id.botaoSubtrair);
-        deletar = findViewById(R.id.deleteButton);
-        botaoResultado1 = findViewById(R.id.idResultado1);
-        botaoResultado2 = findViewById(R.id.idResultado2);
-        botaoAddPlayer  = findViewById(R.id.criar_player);
-        botaoCancelarCriar = findViewById(R.id.botaoCancelarCriar);
-        editarNomePlayer = findViewById(R.id.editNomeDuelista);
-
-        //instanciaçao dos botoes dos players
-
-        imagemP1 = findViewById(R.id.player1id);
-        imagemP2 = findViewById(R.id.player2id);
-        imagemP3 = findViewById(R.id.player3id);
-        imagemP4 = findViewById(R.id.player4id);
-
-        nomePlayer1 = findViewById(R.id.nameP1);
-        nomePlayer2 = findViewById(R.id.nameP2);
-        nomePlayer3 = findViewById(R.id.nameP3);
-        nomePlayer4 = findViewById(R.id.nameP4);
-        recomporLP = findViewById(R.id.recompor);
-
-        //instanciação do Lifepoints
-        LPplayer1 = findViewById(R.id.lifePointsP1);
-        LPplayer2 = findViewById(R.id.lifePointsP2);
-        LPplayer3 = findViewById(R.id.lifePointsP3);
-        LPplayer4 = findViewById(R.id.lifePointsP4);
-        animacao_dado = findViewById(R.id.animacao_dado);
-
-        //instanciação do visor
-        lifePoint = findViewById(R.id.visorId);
 
         imagemP1.setOnLongClickListener(clickLongo);
         imagemP2.setOnLongClickListener(clickLongo);
@@ -210,13 +166,11 @@ public class TelaCalculadora extends AppCompatActivity {
         }
         mHideHandler.postDelayed(mHidePart2Runnable, UI_ANIMATION_DELAY);
     }
-
     @Override
     protected void onStart() {
         super.onStart();
         hide();
     }
-
     @Override
     protected void onResume() {
         super.onResume();
@@ -234,7 +188,6 @@ public class TelaCalculadora extends AppCompatActivity {
         }
         return soma;
     }
-
     public int diminuir(String recebeNum) {
         int diminuido = 0;
         String[] diminuirNum = recebeNum.split("-");
@@ -248,7 +201,6 @@ public class TelaCalculadora extends AppCompatActivity {
         }
         return diminuido;
     }
-
     public void ativarPlayer(Duelista duelAtivar, ArrayList<Duelista> lista, ArrayList<ImageView> listaImagens, TextView lp) {
         try {
             for (int i = 0; i < lista.size() & i < listaImagens.size(); i++) {
@@ -266,14 +218,12 @@ public class TelaCalculadora extends AppCompatActivity {
         }
         operadorAtivo = false;
     }
-
     public void recomporLifesPoints(ArrayList<Duelista> listaPlayers, ArrayList<TextView> listaDeHps) {
         for (int i = 0; i < listaPlayers.size() & i < listaDeHps.size(); i++) {
             listaPlayers.get(i).setLifepoint(getString(R.string.lifepoint));
             listaDeHps.get(i).setText(getString(R.string.lifepoint));
         }
     }
-
     public void resultadoCalculo(TextView lp, ArrayList<Duelista> listaPlayers, ArrayList<TextView> listaDeHp) {
         for (int i = 0; i < listaPlayers.size(); i++) {
             if (listaPlayers.get(i).isAtivo()) {
@@ -282,7 +232,6 @@ public class TelaCalculadora extends AppCompatActivity {
             }
         }
     }
-
     public void jogarDado(View dado) {
         try {
             for (int i = 0; i < 6; i++) {
@@ -335,12 +284,10 @@ public class TelaCalculadora extends AppCompatActivity {
             e.printStackTrace();
         }
     }
-
     public void apertaNumero(Button botao, TextView lifePoint) {
         lifePoint.setText(lifePoint.getText() + botao.getText().toString());
         operadorAtivo = false;
     }
-
     public void click(View v) {
         switch (v.getId()) {
             case R.id.botao0:
@@ -503,9 +450,8 @@ public class TelaCalculadora extends AppCompatActivity {
             default:
         }
     }
-
     public void listarDecks (ListView lista){
-        AdapterListaDuelista adaptador = new AdapterListaDuelista(listaDecks);
+        AdapterListaDeck adaptador = new AdapterListaDeck(listaDecks);
     }
     public void chamarTelaCriarPlayer(ConstraintLayout view) {
         boolean selecionadoDeck = false;
@@ -526,7 +472,6 @@ public class TelaCalculadora extends AppCompatActivity {
         });
         menu.addView(viewTeste);
     }
-
     public void criarDuelista( String nome, int deck){
         Duelista duel = new Duelista();
         duel.setNome(nome);
@@ -536,5 +481,51 @@ public class TelaCalculadora extends AppCompatActivity {
             Toast.makeText(this,"Duelista criado com sucesso", Toast.LENGTH_SHORT).show();
         }
     }
+    public void setaBotoes (){
+        apresentaOptions = findViewById(R.id.layoutId);
+        layoutGeral = findViewById(R.id.layoutGeralId);
+        menuplayers = findViewById(R.id.optionsPlayer);
+        botao0 = findViewById(R.id.botao0);
+        botao1 = findViewById(R.id.botao1id);
+        botao2 = findViewById(R.id.botao2id);
+        botao3 = findViewById(R.id.botao3id);
+        botao4 = findViewById(R.id.botao4id);
+        botao5 = findViewById(R.id.botao5id);
+        botao6 = findViewById(R.id.botao6id);
+        botao7 = findViewById(R.id.botao7id);
+        botao8 = findViewById(R.id.botao8id);
+        botao9 = findViewById(R.id.botao9id);
+        botao500 = findViewById(R.id.botao500id);
+        botao1000 = findViewById(R.id.botao1000id);
+        botaoSomar = findViewById(R.id.botaoSomar);
+        botaoSubtrair = findViewById(R.id.botaoSubtrair);
+        deletar = findViewById(R.id.deleteButton);
+        botaoResultado1 = findViewById(R.id.idResultado1);
+        botaoResultado2 = findViewById(R.id.idResultado2);
+        botaoAddPlayer  = findViewById(R.id.criar_player);
+        botaoCancelarCriar = findViewById(R.id.botaoCancelarCriar);
+        editarNomePlayer = findViewById(R.id.editNomeDuelista);
 
+        //instanciaçao dos botoes dos players
+
+        imagemP1 = findViewById(R.id.player1id);
+        imagemP2 = findViewById(R.id.player2id);
+        imagemP3 = findViewById(R.id.player3id);
+        imagemP4 = findViewById(R.id.player4id);
+
+        nomePlayer1 = findViewById(R.id.nameP1);
+        nomePlayer2 = findViewById(R.id.nameP2);
+        nomePlayer3 = findViewById(R.id.nameP3);
+        nomePlayer4 = findViewById(R.id.nameP4);
+        recomporLP = findViewById(R.id.recompor);
+
+        //instanciação do Lifepoints
+        LPplayer1 = findViewById(R.id.lifePointsP1);
+        LPplayer2 = findViewById(R.id.lifePointsP2);
+        LPplayer3 = findViewById(R.id.lifePointsP3);
+        LPplayer4 = findViewById(R.id.lifePointsP4);
+        animacao_dado = findViewById(R.id.animacao_dado);
+        //instanciação do visor
+        lifePoint = findViewById(R.id.visorId);
+    }
 }

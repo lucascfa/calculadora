@@ -45,7 +45,7 @@ public class AdapterListaDuelista extends RecyclerView.Adapter<AdapterListaDueli
 
         public MyViewHolder(View itemView) {
             super(itemView);
-            nome = itemView.findViewById(R.id.nomeplayer);
+            //nome = itemView.findViewById(R.id.editNomeDuelista);
             imagemDeck = itemView.findViewById(R.id.imagemDeck);
             if (deck.getImagemDeck() == 1) {
                 imagemDeck.setBackgroundResource(R.drawable.felgrand_deck);
