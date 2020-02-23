@@ -8,4 +8,8 @@
     <string name="derrotas">Derrotas</string>
     <string name="cancelar">Cancelar</string>
     <string name="criar">Criar</string>
+    <string name="digite_o_nome_do_duelista">Digite o nome do duelista</string>
+    <string name="dica">dica</string>
+    <string name="apagar">Apagar</string>
+    <string name="botao_mais">+</string>
 </resources>

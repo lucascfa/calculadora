@@ -443,7 +443,7 @@
                 android:layout_marginTop="44dp"
                 android:background="#3D0561"
                 android:onClick="click"
-                android:text="+"
+                android:text="@string/botao_mais"
                 android:textColor="@android:color/background_light"
                 android:textSize="30sp"
                 app:layout_constraintStart_toEndOf="@+id/botao3id"
@@ -507,7 +507,7 @@
                 android:layout_marginTop="4dp"
                 android:background="@color/colorPrimaryDark"
                 android:onClick="click"
-                android:text="Apagar"
+                android:text="@string/apagar"
                 android:textColor="@android:color/background_light"
                 android:textSize="10sp"
                 android:textStyle="bold"
@@ -628,7 +628,8 @@
                 android:onClick="click"
                 app:layout_constraintStart_toEndOf="@+id/recompor"
                 app:layout_constraintTop_toTopOf="parent"
-                app:srcCompat="@drawable/criar_player" />
+                app:srcCompat="@drawable/criar_player"
+                android:contentDescription="TODO" />
         </android.support.constraint.ConstraintLayout>
 
     </android.support.constraint.ConstraintLayout>
